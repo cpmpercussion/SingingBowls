@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PdAudioController.h"
+#import "PdBase.h"
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController <PdReceiverDelegate>
+
 
 @end
