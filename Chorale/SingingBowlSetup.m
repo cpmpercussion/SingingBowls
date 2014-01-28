@@ -41,9 +41,6 @@
 {
     int pitchNumber = floor(radius * [self numberOfPitches]);
     pitchNumber = MIN(pitchNumber,([self numberOfPitches]-1));
-    
-    NSLog([NSString stringWithFormat:@"Pitch Number: %d",pitchNumber]);
-    
     return [((NSNumber *) [self.pitches objectAtIndex:pitchNumber]) intValue];
 }
 

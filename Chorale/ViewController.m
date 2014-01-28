@@ -12,6 +12,8 @@
 #import "ScaleMaker.h"
 #import "SingingBowlSetup.h"
 #import "SingingBowlView.h"
+#import "SingingBowlComposition.h"
+#import "TestChoraleComposition.h"
 
 @interface ViewController ()
 // Audio
@@ -20,8 +22,10 @@
 // Network
 //UI
 @property (weak, nonatomic) IBOutlet SingingBowlView *bowlView;
-
 @property (nonatomic) CGFloat viewRadius;
+@property (weak, nonatomic) IBOutlet UIStepper *compositionStepper;
+// Composition
+@property (strong,nonatomic) SingingBowlComposition *composition;
 @end
 
 @implementation ViewController
@@ -50,8 +54,15 @@
     [self.audioController print];
     [PdBase setDelegate:self];
     
+    // Setup composition
+    self.composition = [[TestChoraleComposition alloc] init];
+    [self.compositionStepper setMinimumValue:0];
+    [self.compositionStepper setMaximumValue:[self.composition numberOfSetups]];
+    
     // Setup singing bowls
-    self.bowlSetup = [[SingingBowlSetup alloc] initWithPitches:[NSMutableArray arrayWithArray:TEST_PITCHES]];
+    //self.bowlSetup = [[SingingBowlSetup alloc] initWithPitches:[NSMutableArray arrayWithArray:TEST_PITCHES]];
+    self.bowlSetup = [[SingingBowlSetup alloc] initWithPitches:[NSMutableArray arrayWithArray:[self.composition firstSetup]]];
+
     self.viewRadius = [self calculateMaximumRadius];
     [self.bowlView drawSetup:self.bowlSetup];
 }
@@ -62,6 +73,12 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void) applyNewSetup: (NSArray *) setup {
+    // change bowl setup
+    self.bowlSetup = [[SingingBowlSetup alloc] initWithPitches:[NSMutableArray arrayWithArray:setup]];
+    [self.bowlView drawSetup:self.bowlSetup];
+}
+
 #pragma mark - Touch Methods
 
 
@@ -69,11 +86,8 @@
 {
     UITouch *touch = [touches anyObject];
     CGPoint point = [touch locationInView:self.view];
-    
     int velocity = 100;
-
     [PdBase sendNoteOn:1 pitch:[self noteFromPosition:point] velocity:velocity];
-    //NSLog(@"touch note");
 }
 
 - (IBAction)panGestureRecognized:(UIPanGestureRecognizer *)sender {
@@ -92,9 +106,7 @@
         //NSLog(@"start singing");
     } else if ([sender state] == UIGestureRecognizerStateChanged) { // pan changed
         //[PdBase sendFloat:velocity toReceiver:@"singlevel" ];
-
         //NSLog(@"Continue singing");
-        
 #pragma TODO choose new pitch
     } else if (([sender state] == UIGestureRecognizerStateEnded) || ([sender state] == UIGestureRecognizerStateCancelled)) { // panended
         [PdBase sendFloat:0 toReceiver:@"sing"];
@@ -102,11 +114,17 @@
     }
 }
 
+- (IBAction)steppedMoved:(UIStepper *)sender {
+    int state = (int) sender.value;
+    NSArray *newSetup = [self.composition setupForState:state];
+    [self applyNewSetup:newSetup];
+}
+
+
 #pragma mark - Utils
 -(CGFloat)calculateMaximumRadius {
     CGFloat xDist = (self.view.center.x);
     CGFloat yDist = (self.view.center.y);
-    
     return sqrt((xDist * xDist) + (yDist * yDist));
 }
 
@@ -121,11 +139,7 @@
 {
     CGFloat distance = [self calculateDistanceFromCenter:point];
     CGFloat radius = distance/self.viewRadius;
-    //NSLog([NSString stringWithFormat:@"%f",radius]);
-    
     int note = [self.bowlSetup pitchAtRadius:radius];
-    //NSLog([NSString stringWithFormat:@"Note: %d",note]);
-    
     return note;
     
     // distance = distance /600

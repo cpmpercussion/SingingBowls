@@ -391,6 +391,8 @@
 		5623DE88188CE4F800AA6C14 /* libpd-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5623DE76188CDCDF00AA6C14 /* libpd-ios.a */; };
 		565A2324188F94AE00093B32 /* SingingBowlView.m in Sources */ = {isa = PBXBuildFile; fileRef = 565A2323188F94AE00093B32 /* SingingBowlView.m */; };
 		565A2328188F94CA00093B32 /* SingingBowlSetup.m in Sources */ = {isa = PBXBuildFile; fileRef = 565A2327188F94CA00093B32 /* SingingBowlSetup.m */; };
+		56B7898F1897327D00B6AE22 /* SingingBowlComposition.m in Sources */ = {isa = PBXBuildFile; fileRef = 56B7898E1897327D00B6AE22 /* SingingBowlComposition.m */; };
+		56B789921897336800B6AE22 /* TestChoraleComposition.m in Sources */ = {isa = PBXBuildFile; fileRef = 56B789911897336800B6AE22 /* TestChoraleComposition.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -817,6 +819,10 @@
 		565A2323188F94AE00093B32 /* SingingBowlView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingingBowlView.m; sourceTree = "<group>"; };
 		565A2326188F94CA00093B32 /* SingingBowlSetup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingingBowlSetup.h; sourceTree = "<group>"; };
 		565A2327188F94CA00093B32 /* SingingBowlSetup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingingBowlSetup.m; sourceTree = "<group>"; };
+		56B7898D1897327D00B6AE22 /* SingingBowlComposition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingingBowlComposition.h; sourceTree = "<group>"; };
+		56B7898E1897327D00B6AE22 /* SingingBowlComposition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingingBowlComposition.m; sourceTree = "<group>"; };
+		56B789901897336800B6AE22 /* TestChoraleComposition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestChoraleComposition.h; sourceTree = "<group>"; };
+		56B789911897336800B6AE22 /* TestChoraleComposition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestChoraleComposition.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -894,10 +900,8 @@
 				5623DB75188CDB3800AA6C14 /* Main.storyboard */,
 				5623DB78188CDB3800AA6C14 /* ViewController.h */,
 				5623DB79188CDB3800AA6C14 /* ViewController.m */,
-				565A2322188F94AE00093B32 /* SingingBowlView.h */,
-				565A2323188F94AE00093B32 /* SingingBowlView.m */,
-				565A2326188F94CA00093B32 /* SingingBowlSetup.h */,
-				565A2327188F94CA00093B32 /* SingingBowlSetup.m */,
+				56B7898A1897323F00B6AE22 /* views */,
+				56B7898C1897324900B6AE22 /* models */,
 				5623DB7B188CDB3800AA6C14 /* Images.xcassets */,
 				5623DB6A188CDB3800AA6C14 /* Supporting Files */,
 			);
@@ -1317,6 +1321,28 @@
 				5623DE78188CDCDF00AA6C14 /* libpd-osx.a */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		56B7898A1897323F00B6AE22 /* views */ = {
+			isa = PBXGroup;
+			children = (
+				565A2322188F94AE00093B32 /* SingingBowlView.h */,
+				565A2323188F94AE00093B32 /* SingingBowlView.m */,
+			);
+			name = views;
+			sourceTree = "<group>";
+		};
+		56B7898C1897324900B6AE22 /* models */ = {
+			isa = PBXGroup;
+			children = (
+				565A2326188F94CA00093B32 /* SingingBowlSetup.h */,
+				565A2327188F94CA00093B32 /* SingingBowlSetup.m */,
+				56B7898D1897327D00B6AE22 /* SingingBowlComposition.h */,
+				56B7898E1897327D00B6AE22 /* SingingBowlComposition.m */,
+				56B789901897336800B6AE22 /* TestChoraleComposition.h */,
+				56B789911897336800B6AE22 /* TestChoraleComposition.m */,
+			);
+			name = models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1808,7 +1834,9 @@
 				5623DB7A188CDB3800AA6C14 /* ViewController.m in Sources */,
 				565A2328188F94CA00093B32 /* SingingBowlSetup.m in Sources */,
 				565A2324188F94AE00093B32 /* SingingBowlView.m in Sources */,
+				56B7898F1897327D00B6AE22 /* SingingBowlComposition.m in Sources */,
 				5623DB74188CDB3800AA6C14 /* AppDelegate.m in Sources */,
+				56B789921897336800B6AE22 /* TestChoraleComposition.m in Sources */,
 				5623DB70188CDB3800AA6C14 /* main.m in Sources */,
 				5623DE85188CE34400AA6C14 /* ScaleMaker.m in Sources */,
 			);

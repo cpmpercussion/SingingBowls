@@ -13,17 +13,12 @@
 #define CENTER_Y 384
 #define ROOTTWO 1.41421356237
 
+@interface SingingBowlView()
+@property (strong,nonatomic) CALayer *rimSubLayer;
+@end
+
 
 @implementation SingingBowlView
-
-//- (id)initWithFrame:(CGRect)frame
-//{
-//    self = [super initWithFrame:frame];
-//    if (self) {
-//
-//    }
-//    return self;
-//}
 
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
@@ -32,28 +27,25 @@
         // Initialization code
         self.backgroundColor = [UIColor blackColor];
         self.rimColour = [UIColor whiteColor];
+        self.rimSubLayer = [[CALayer alloc] init];
         self.textColour = [UIColor whiteColor];
+        [self.layer addSublayer:self.rimSubLayer];
     }
     return self;
 }
 
 -(void) drawSetup:(SingingBowlSetup *) setup
 {
-    NSLog(@"Drawing Setup");
+    // delete previous setup
+    [self.rimSubLayer setSublayers:nil];
+    // draw new one
     CGFloat totalRadius = [self viewRadius];
-    
     for (int i = 0; i < [setup numberOfPitches]; i++) {
         CGFloat radius = i * totalRadius / (CGFloat) [setup numberOfPitches];
-        
         int n = [setup pitchAtIndex:i];
-        
-        
         NSString *note = [SingingBowlSetup noteNameForMidiNumber:n];
         [self drawBowlRimAtRadius:radius withNote:note];
-        
-        NSLog([NSString stringWithFormat:@"Drawing Bowl at radius: %f with pitch %d and name %@", radius,n,note]);
-
-        
+        //NSLog([NSString stringWithFormat:@"Drawing Bowl at radius: %f with pitch %d and name %@", radius,n,note]);
     }
 }
 
@@ -64,19 +56,19 @@
     shapeLayer.fillColor = nil;
     shapeLayer.lineWidth = 3.0;
     
-    [self.layer addSublayer:shapeLayer];
+    [self.rimSubLayer addSublayer:shapeLayer];
     [self.rimLayers addObject:shapeLayer];
     
     CATextLayer *noteTextLayer = [CATextLayer layer];
     CGFloat diagonaldistance = radius / ROOTTWO;
     
     noteTextLayer.string = note;
-    //[noteTextLayer setFont:@"Courier"];
+    [noteTextLayer setFont:@"HelveticaNeue"];
     noteTextLayer.fontSize = 20.f;
     noteTextLayer.alignmentMode = kCAAlignmentCenter;
     noteTextLayer.frame = CGRectMake(self.center.x + diagonaldistance, self.center.y + diagonaldistance,25.f,25.f);
     
-    [self.layer addSublayer:noteTextLayer];
+    [self.rimSubLayer addSublayer:noteTextLayer];
     [self.rimLayers addObject:noteTextLayer];
     
 }
