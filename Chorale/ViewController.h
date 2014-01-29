@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "PdAudioController.h"
 #import "PdBase.h"
+#import "MetatoneNetworkManager.h"
 
-@interface ViewController : UIViewController <PdReceiverDelegate>
+@interface ViewController : UIViewController <PdReceiverDelegate,MetatoneNetworkManagerDelegate>
 
 
 @end

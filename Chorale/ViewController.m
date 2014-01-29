@@ -20,6 +20,7 @@
 @property (strong,nonatomic) PdAudioController *audioController;
 @property (strong, nonatomic) SingingBowlSetup *bowlSetup;
 // Network
+@property (strong,nonatomic) MetatoneNetworkManager *networkManager;
 //UI
 @property (weak, nonatomic) IBOutlet SingingBowlView *bowlView;
 @property (nonatomic) CGFloat viewRadius;
@@ -29,6 +30,10 @@
 @end
 
 @implementation ViewController
+
+
+
+
 
 #pragma mark - Setup
 
@@ -65,6 +70,9 @@
 
     self.viewRadius = [self calculateMaximumRadius];
     [self.bowlView drawSetup:self.bowlSetup];
+    
+    // Setup Network
+    self.networkManager = [[MetatoneNetworkManager alloc] initWithDelegate:self shouldOscLog:YES];
 }
 
 - (void)didReceiveMemoryWarning
@@ -146,5 +154,23 @@
     //nt note = (int) (distance * 35);
     //return [ScaleMaker lydian:36 withNote:note];
 }
+
+#pragma mark - Metatone Network Methods
+-(void)searchingForLoggingServer {
+    
+}
+
+-(void)stoppedSearchingForLoggingServer {
+    
+}
+
+-(void)loggingServerFoundWithAddress:(NSString *)address andPort:(int)port andHostname:(NSString *)hostname {
+    
+}
+
+-(void)didReceiveMetatoneMessageFrom:(NSString *)device withName:(NSString *)name andState:(NSString *)state {
+    
+}
+
 
 @end
