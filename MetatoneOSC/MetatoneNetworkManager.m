@@ -24,14 +24,17 @@
     self.delegate = delegate;
     self.deviceID = [[UIDevice currentDevice].identifierForVendor UUIDString];
     self.oscLogging = osclogging;
+    self.remoteIPAddress = DEFAULT_ADDRESS;
+    self.remotePort = DEFAULT_PORT;
+    self.localIPAddress = [MetatoneNetworkManager getIPAddress];
+
     
     // Setup OSC Client
     self.oscClient = [[F53OSCClient alloc] init];
-    [self.oscClient setHost:DEFAULT_ADDRESS];
-    [self.oscClient setPort:DEFAULT_PORT];
+    [self.oscClient setHost:self.remoteIPAddress];
+    [self.oscClient setPort:self.remotePort];
     [self.oscClient connect];
     if ([self.oscClient isConnected]) NSLog(@"NETWORK MANAGER: Setup Default OSC Connection.");
-    
     
     // Setup OSC Server
     self.oscServer = [[F53OSCServer alloc] init];
@@ -39,33 +42,11 @@
     [self.oscServer setPort:DEFAULT_PORT];
     [self.oscServer startListening];
     
-    NSLog(@"NETWORK MANAGER: attempting to setup default port");
-    // Default online message
-    self.remoteIPAddress = DEFAULT_ADDRESS;
-    self.remotePort = DEFAULT_PORT;
-    [self sendMessageOnline];
-    
-    //self.connection = [[OSCConnection alloc] init];
-    //self.connection.delegate = self;
-    //self.connection.continuouslyReceivePackets = YES;
-//    NSError *error;
-//    if (![self.connection bindToAddress:nil port:DEFAULT_PORT error:&error])
-//    {
-//        NSLog(@"NETWORK MANAGER: Could not bind UDP connection: %@", error);
-//        return nil;
-//    } else {
-//        NSLog(@"NETWORK MANAGER: Setup Default OSC Connection.");
-//        self.remoteIPAddress = DEFAULT_ADDRESS;
-//        self.remotePort = DEFAULT_PORT;
-//        [self.connection receivePacket];
-//        [self sendMessageOnline];
-//    }
-    
     // register with Bonjour
     self.metatoneNetService = [[NSNetService alloc]
                                initWithDomain:@""
                                type:METATONE_SERVICE_TYPE
-                               name:[NSString stringWithFormat:@"%@", [UIDevice currentDevice].name]
+                               name:[UIDevice currentDevice].name
                                port:DEFAULT_PORT];
     if (self.metatoneNetService != nil) {
         [self.metatoneNetService setDelegate: self];
@@ -73,7 +54,6 @@
         NSLog(@"NETWORK MANAGER: Metatone NetService Published.");
     }
     
-    self.localIPAddress = [MetatoneNetworkManager getIPAddress];
     
     if (self.oscLogging) {
         // try to find an OSC Logger to connect to (but only if "oscLogging" is set).
@@ -84,13 +64,12 @@
                                                      inDomain:@"local."];
     }
     
-    
     // try to find Metatone Apps to connect to (always do this)
     NSLog(@"NETWORK MANAGER: Browsing for Metatone App Services...");
     self.metatoneServiceBrowser  = [[NSNetServiceBrowser alloc] init];
     [self.metatoneServiceBrowser setDelegate:self];
     [self.metatoneServiceBrowser searchForServicesOfType:METATONE_SERVICE_TYPE
-                                                 inDomain:@"local."];
+                                                inDomain:@"local."];
     return self;
 }
 
@@ -122,7 +101,6 @@
 }
 
 -(void)netServiceBrowser:(NSNetServiceBrowser *)aNetServiceBrowser didFindService:(NSNetService *)aNetService moreComing:(BOOL)moreComing {
-    NSLog([NSString stringWithFormat:@"NETWORK MANAGER: Found a NetService: %@", [aNetService type]]);
     
     if ([[aNetService type] isEqualToString:METATONE_SERVICE_TYPE]) {
         NSLog(@"NETWORK MANAGER: Found a metatoneapp. Resolving.");
@@ -135,12 +113,9 @@
         NSLog(@"NETWORK MANAGER: Found an OSC Logger. Resolving.");
         self.oscLoggerService = aNetService;
         [self.oscLoggerService setDelegate:self];
-        [self.oscLoggerService resolveWithTimeout:10.0];
-        //[self.oscLoggerServiceBrowser stop];
-        // need to do something about possibility of more than one OSC Logger.
+        [self.oscLoggerService resolveWithTimeout:5.0];
+        //TODO: sort out case of multiple OSC Loggers.
     }
-        
-
 }
 
 -(void)netServiceDidResolveAddress:(NSNetService *)sender {
@@ -157,7 +132,10 @@
                                                sizeof(addressBuffer));
             int port = ntohs(socketAddress->sin_port);
             if (addressStr && port) {
-                NSLog(@"NETWORK MANAGER: Resolved service of type %@ at %s:%d", [sender type], addressStr, port);
+                NSLog(@"NETWORK MANAGER: Resolved service of type %@ at %s:%d",
+                      [sender type],
+                      addressStr,
+                      port);
                 firstAddress = [NSString stringWithFormat:@"%s",addressStr];
                 firstPort = port;
                 break;
@@ -183,17 +161,13 @@
         if (![firstAddress isEqualToString:self.localIPAddress]) {
             [self.remoteMetatoneIPAddresses addObject:@[firstAddress,[NSNumber numberWithInt:firstPort]]];
             NSLog(@"NETWORK MANAGER: Resolved and Connected to a MetatoneApp Service.");
-        } else {
-            NSLog(@"NETWORK MANAGER: Not connecting to local MetatoneApp Service.");
         }
     }
-    
 }
 
 
 -(void)netServiceBrowserWillSearch:(NSNetServiceBrowser *)aNetServiceBrowser {
     NSLog(@"NETWORK MANAGER: NetServiceBrowser will search.");
-    //[aNetServiceBrowser
     [self.delegate searchingForLoggingServer];
 }
 
@@ -204,24 +178,15 @@
 
 
 # pragma mark OSC Sending Methods
-
 -(void)sendMessageWithAccelerationX:(double)x Y:(double)y Z:(double)z
 {
     NSArray *contents = @[self.deviceID,
                           [NSNumber numberWithFloat:x],
                           [NSNumber numberWithFloat:y],
                           [NSNumber numberWithFloat:z]];
-    
     F53OSCMessage *message = [F53OSCMessage messageWithAddressPattern:@"/metatone/acceleration"
                                                         arguments:contents];
     [self.oscClient sendPacket:message toHost:self.remoteIPAddress onPort:self.remotePort];
-//    OSCMutableMessage *message = [[OSCMutableMessage alloc] init];
-//    message.address = ;
-//    [message addString:self.deviceID];
-//    [message addFloat:x];
-//    [message addFloat:y];
-//    [message addFloat:z];
-//    [self.connection sendPacket:message toHost:self.remoteIPAddress port:self.remotePort];
 }
 
 -(void)sendMessageWithTouch:(CGPoint)point Velocity:(CGFloat)vel
@@ -233,15 +198,6 @@
     F53OSCMessage *message = [F53OSCMessage messageWithAddressPattern:@"/metatone/touch"
                                                             arguments:contents];
     [self.oscClient sendPacket:message toHost:self.remoteIPAddress onPort:self.remotePort];
-
-    
-//    OSCMutableMessage *message = [[OSCMutableMessage alloc] init];
-//    message.address = @"/metatone/touch";
-//    [message addString:self.deviceID];
-//    [message addFloat:point.x];
-//    [message addFloat:point.y];
-//    [message addFloat:vel];
-//    [self.connection sendPacket:message toHost:self.remoteIPAddress port:self.remotePort];
 }
 
 -(void)sendMesssageSwitch:(NSString *)name On:(BOOL)on
@@ -252,13 +208,6 @@
                           switchState];
     F53OSCMessage *message = [F53OSCMessage messageWithAddressPattern:@"/metatone/switch" arguments:contents];
     [self.oscClient sendPacket:message toHost:self.remoteIPAddress onPort:self.remotePort];
-
-//    OSCMutableMessage *message = [[OSCMutableMessage alloc] init];
-//    message.address = @"/metatone/switch";
-//    [message addString:self.deviceID];
-//    [message addString:name];
-//    [message addString:on ? @"T" : @"F"];
-//    [self.connection sendPacket:message toHost:self.remoteIPAddress port:self.remotePort];
 }
 
 -(void)sendMessageTouchEnded
@@ -266,11 +215,6 @@
     NSArray *contents = @[self.deviceID];
     F53OSCMessage *message = [F53OSCMessage messageWithAddressPattern:@"/metatone/touch/ended" arguments:contents];
     [self.oscClient sendPacket:message toHost:self.remoteIPAddress onPort:self.remotePort];
-    
-//    OSCMutableMessage *message = [[OSCMutableMessage alloc] init];
-//    message.address = @"/metatone/touch/ended";
-//    [message addString:self.deviceID];
-//    [self.connection sendPacket:message toHost:self.remoteIPAddress port:self.remotePort];
 }
 
 -(void)sendMessageOnline
@@ -278,12 +222,6 @@
     NSArray *contents = @[self.deviceID];
     F53OSCMessage *message = [F53OSCMessage messageWithAddressPattern:@"/metatone/online" arguments:contents];
     [self.oscClient sendPacket:message toHost:self.remoteIPAddress onPort:self.remotePort];
-    
-    
-//    OSCMutableMessage *message = [[OSCMutableMessage alloc] init];
-//    message.address = @"/metatone/online";
-//    [message addString:self.deviceID];
-//    [self.connection sendPacket:message toHost:self.remoteIPAddress port:self.remotePort];
 }
 
 -(void)sendMessageOffline
@@ -292,12 +230,6 @@
     F53OSCMessage *message = [F53OSCMessage messageWithAddressPattern:@"/metatone/offline"
                                                             arguments:contents];
     [self.oscClient sendPacket:message toHost:self.remoteIPAddress onPort:self.remotePort];
-
-    
-//    OSCMutableMessage *message = [[OSCMutableMessage alloc] init];
-//    message.address = @"/metatone/offline";
-//    [message addString:self.deviceID];
-//    [self.connection sendPacket:message toHost:self.remoteIPAddress port:self.remotePort];
 }
 
 
@@ -309,44 +241,17 @@
                                                             arguments:contents];
 
     // Log the metatone messages as well.
-    // [self.oscClient sendPacket:message toHost:self.remoteIPAddress onPort:self.remotePort];
+    [self.oscClient sendPacket:message toHost:self.remoteIPAddress onPort:self.remotePort];
     
+    // Send to each metatone app on the network.
     for (NSArray *address in self.remoteMetatoneIPAddresses) {
         [self.oscClient sendPacket:message
                             toHost:(NSString *)address[0]
                               onPort:[((NSNumber *)address[1]) integerValue]];
     }
-    
-//    OSCMutableMessage *message = [[OSCMutableMessage alloc] init];
-//    message.address = @"/metatone/app";
-//    [message addString:self.deviceID];
-//    [message addString:name];
-//    [message addString:state];
-//    for (NSArray *address in self.remoteMetatoneIPAddresses) {
-//        [self.connection sendPacket:message toHost:(NSString *)address[0] port:[((NSNumber *)address[1]) integerValue]];
-//    }
 }
 
 #pragma mark OSC Receiving Methods
-
-//-(void)oscConnection:(OSCConnection *)connection didReceivePacket:(OSCPacket *)packet fromHost:(NSString *)host port:(UInt16)port
-//{
-//    // Received an OSC message
-//    if ([packet.address isEqualToString:@"/metatone/app"]) {
-//        //NSLog(@"NETWORK MANAGER: Received Metatone App Message");
-//        //NSLog([packet description]);
-//        if ([packet.arguments count] == 3) {
-//            if ([packet.arguments[0] isKindOfClass:[NSString class]] &&
-//                [packet.arguments[1] isKindOfClass:[NSString class]] &&
-//                [packet.arguments[2] isKindOfClass:[NSString class]])
-//            {
-//                NSLog(@"NETWORK MANAGER: Correctly Formed Message - passing to delegate.");
-//                [self.delegate didReceiveMetatoneMessageFrom:packet.arguments[0] withName:packet.arguments[1] andState:packet.arguments[2]];
-//            }
-//        }
-//    }
-//}
-
 -(void)takeMessage:(F53OSCMessage *)message {
     // Received an OSC message
     if ([message.addressPattern isEqualToString:@"/metatone/app"]) {
@@ -366,7 +271,6 @@
 
 
 #pragma mark IP Address Methods
-
 // Get IP Address
 + (NSString *)getIPAddress {
     NSString *address = @"error";
@@ -408,7 +312,5 @@
     }
     return address;
 }
-
-
 
 @end
