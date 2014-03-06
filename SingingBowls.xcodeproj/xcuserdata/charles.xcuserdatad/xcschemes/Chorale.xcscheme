@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "5623DB5F188CDB3800AA6C14"
-               BuildableName = "Chorale.app"
-               BlueprintName = "Chorale"
-               ReferencedContainer = "container:Chorale.xcodeproj">
+               BuildableName = "SingingBowls.app"
+               BlueprintName = "SingingBowls"
+               ReferencedContainer = "container:SingingBowls.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "5623DB80188CDB3800AA6C14"
-               BuildableName = "ChoraleTests.xctest"
-               BlueprintName = "ChoraleTests"
-               ReferencedContainer = "container:Chorale.xcodeproj">
+               BuildableName = "SingingBowlsTests.xctest"
+               BlueprintName = "SingingBowlsTests"
+               ReferencedContainer = "container:SingingBowls.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -43,9 +43,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "5623DB5F188CDB3800AA6C14"
-            BuildableName = "Chorale.app"
-            BlueprintName = "Chorale"
-            ReferencedContainer = "container:Chorale.xcodeproj">
+            BuildableName = "SingingBowls.app"
+            BlueprintName = "SingingBowls"
+            ReferencedContainer = "container:SingingBowls.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -62,9 +62,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "5623DB5F188CDB3800AA6C14"
-            BuildableName = "Chorale.app"
-            BlueprintName = "Chorale"
-            ReferencedContainer = "container:Chorale.xcodeproj">
+            BuildableName = "SingingBowls.app"
+            BlueprintName = "SingingBowls"
+            ReferencedContainer = "container:SingingBowls.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -80,9 +80,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "5623DB5F188CDB3800AA6C14"
-            BuildableName = "Chorale.app"
-            BlueprintName = "Chorale"
-            ReferencedContainer = "container:Chorale.xcodeproj">
+            BuildableName = "SingingBowls.app"
+            BlueprintName = "SingingBowls"
+            ReferencedContainer = "container:SingingBowls.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

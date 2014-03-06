@@ -15,6 +15,10 @@
 
 @interface SingingBowlView()
 @property (strong,nonatomic) CALayer *rimSubLayer;
+@property (strong,nonatomic) NSMutableDictionary *continuousEdgeLayers;
+@property (strong,nonatomic) NSMutableDictionary *tapEdgeLayers;
+@property (weak,nonatomic) SingingBowlSetup* currentSetup;
+@property (nonatomic) CGFloat totalRadius;
 @end
 
 
@@ -30,6 +34,8 @@
         self.rimSubLayer = [[CALayer alloc] init];
         self.textColour = [UIColor whiteColor];
         [self.layer addSublayer:self.rimSubLayer];
+        self.multipleTouchEnabled = YES;
+        self.totalRadius = [self viewRadius];
     }
     return self;
 }
@@ -38,16 +44,37 @@
 {
     // delete previous setup
     [self.rimSubLayer setSublayers:nil];
+    self.continuousEdgeLayers = [NSMutableDictionary dictionary];
+    self.tapEdgeLayers = [NSMutableDictionary dictionary];
+    self.currentSetup = setup;
+
     // draw new one
     CGFloat totalRadius = [self viewRadius];
+    CGFloat edgeWidth = totalRadius / (CGFloat) [setup numberOfPitches];
+    //CGFloat tapEdgeWidth = 0.0;
+    
     for (int i = 0; i < [setup numberOfPitches]; i++) {
-        CGFloat radius = i * totalRadius / (CGFloat) [setup numberOfPitches];
-        int n = [setup pitchAtIndex:i];
-        NSString *note = [SingingBowlSetup noteNameForMidiNumber:n];
-        [self drawBowlRimAtRadius:radius withNote:note];
-        //NSLog([NSString stringWithFormat:@"Drawing Bowl at radius: %f with pitch %d and name %@", radius,n,note]);
+        // draw the rim.
+        CGFloat rimradius = i * edgeWidth;
+        int noteNumber = [setup pitchAtIndex:i];
+        NSString *note = [SingingBowlSetup noteNameForMidiNumber:noteNumber];
+        [self drawBowlRimAtRadius:rimradius withNote:note];
+        
+        // setup for rim layers:
+        CGFloat rimCenter = (i + 0.5) * edgeWidth;
+        
+        // make continuous rim layer
+        CAShapeLayer* continuousLayer = [self makeBowlLayerAtRadius:rimCenter withColour:[UIColor whiteColor] ofWidth:edgeWidth];
+        [self.continuousEdgeLayers setObject:continuousLayer forKey:[NSNumber numberWithInt:noteNumber]];
+        
+        // make tap rim layer
+        CAShapeLayer* tapLayer = [self makeBowlLayerAtRadius:rimCenter withColour:[UIColor redColor] ofWidth:edgeWidth];
+        [self.tapEdgeLayers setObject:tapLayer forKey:[NSNumber numberWithInt:noteNumber]];
+        //NSLog(@"Edge Layer %d at %f",i,rimCenter);
     }
 }
+
+#pragma mark - Drawing
 
 -(void) drawBowlRimAtRadius:(CGFloat) radius withNote:(NSString *) note {
     CAShapeLayer *shapeLayer = [CAShapeLayer layer];
@@ -73,10 +100,6 @@
     
 }
 
--(CGFloat) viewRadius {
-    return sqrt((self.center.x * self.center.x)+(self.center.y * self.center.y));
-}
-
 - (UIBezierPath *)makeCircleAtLocation:(CGPoint)location radius:(CGFloat)radius
 {
     UIBezierPath *path = [UIBezierPath bezierPath];
@@ -88,4 +111,86 @@
     return path;
 }
 
+- (CAShapeLayer*) makeBowlLayerAtRadius:(CGFloat) radius withColour:(UIColor *)colour ofWidth:(CGFloat)width {
+    CAShapeLayer *shapeLayer = [CAShapeLayer layer];
+    shapeLayer.path = [[self makeCircleAtLocation:self.center radius:radius] CGPath];
+    shapeLayer.strokeColor = [colour CGColor];
+    shapeLayer.fillColor = nil;
+    shapeLayer.lineWidth = width;
+    shapeLayer.hidden = YES;
+    [self.rimSubLayer addSublayer:shapeLayer];
+    return shapeLayer;
+}
+
+
+
+-(void) animateBowlAtRadius:(CGFloat)radius {
+    CGFloat fracRadius = [self fractionOfTotalRadiusFromRadius:radius];
+    int note = [self.currentSetup pitchAtRadius:fracRadius];
+    CAShapeLayer *layer = [self.tapEdgeLayers objectForKey:
+                           [NSNumber numberWithInt:note]];
+    [CATransaction setAnimationDuration:2.0];
+    layer.hidden = NO;
+    [CATransaction setCompletionBlock:^{
+        [CATransaction setAnimationDuration:1.0];
+        layer.hidden = YES;
+        [CATransaction setCompletionBlock:^{
+            [CATransaction setAnimationDuration:3.0];
+        }];
+    }];
+}
+
+-(void) continuouslyAnimateBowlAtRadius:(CGFloat) radius{
+    CAShapeLayer *layer = [self.continuousEdgeLayers objectForKey:
+                           [NSNumber numberWithInt:[self.currentSetup pitchAtRadius:
+                            [self fractionOfTotalRadiusFromRadius:radius]]]];
+    CGFloat width = layer.lineWidth;
+    layer.hidden = NO;
+    
+    CABasicAnimation *pulse = [CABasicAnimation animationWithKeyPath:@"lineWidth"];
+    pulse.fromValue = [NSNumber numberWithDouble:width * 0.95];
+    pulse.toValue = [NSNumber numberWithDouble:width * 1.05];
+    pulse.duration = 0.25;
+    pulse.autoreverses = YES;
+    pulse.repeatCount = HUGE_VALF;
+    
+    [layer addAnimation:pulse forKey:@"pulseAnimation"];
+}
+
+-(void) stopAnimatingBowl {
+    for (CALayer *n in [self.continuousEdgeLayers objectEnumerator]) {
+        n.hidden = YES;
+    }
+}
+
+-(void) changeBowlVolumeTo:(CGFloat) level {
+    for (CALayer *n in [self.continuousEdgeLayers objectEnumerator]) {
+        n.opacity = level;
+    }
+}
+
+
+#pragma mark - Touch
+-(void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    [super touchesBegan:touches withEvent:event];
+    for (UITouch * touch in [touches objectEnumerator]) {
+        [self animateBowlAtRadius:[self calculateDistanceFromCenter:[touch locationInView:self]]];
+    }
+}
+
+#pragma mark - Util
+
+-(CGFloat)calculateDistanceFromCenter:(CGPoint)touchPoint {
+    CGFloat xDist = (touchPoint.x - self.center.x);
+    CGFloat yDist = (touchPoint.y - self.center.y);
+    return sqrt((xDist * xDist) + (yDist * yDist));
+}
+
+-(CGFloat) viewRadius {
+    return sqrt((self.center.x * self.center.x)+(self.center.y * self.center.y));
+}
+
+-(CGFloat)fractionOfTotalRadiusFromRadius:(CGFloat)radius {
+    return radius / self.totalRadius;
+}
 @end

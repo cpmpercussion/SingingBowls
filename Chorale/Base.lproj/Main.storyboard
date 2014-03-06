@@ -9,30 +9,53 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="oOs-36-bsZ"/>
-                        <viewControllerLayoutGuide type="bottom" id="ggv-VL-Xhg"/>
+                        <viewControllerLayoutGuide type="top" id="W5M-2i-Nka"/>
+                        <viewControllerLayoutGuide type="bottom" id="Mg1-8A-slj"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC" customClass="SingingBowlView">
+                    <view key="view" autoresizesSubviews="NO" multipleTouchEnabled="YES" contentMode="scaleToFill" id="yNT-f6-f79">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <stepper opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="kC3-j3-ajz">
+                            <view multipleTouchEnabled="YES" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="8bC-Xf-vdC" customClass="SingingBowlView">
+                                <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
+                                <color key="backgroundColor" red="0.75686281919999998" green="0.67058825489999996" blue="0.56862747670000002" alpha="1" colorSpace="deviceRGB"/>
+                                <gestureRecognizers/>
+                                <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="JKV-LY-x6d" appends="YES" id="Dk7-8G-Pba"/>
+                                </connections>
+                            </view>
+                            <stepper opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="kC3-j3-ajz" userLabel="Setup Stepper (debug)">
                                 <rect key="frame" x="337" y="975" width="94" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <connections>
                                     <action selector="steppedMoved:" destination="BYZ-38-t0r" eventType="valueChanged" id="gSs-4Y-ajv"/>
                                 </connections>
                             </stepper>
+                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="YyU-8b-yRX" userLabel="Distortion Slider (Debug)">
+                                <rect key="frame" x="476" y="971" width="274" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="sliderMoved:" destination="BYZ-38-t0r" eventType="valueChanged" id="dI5-6b-2B6"/>
+                                </connections>
+                            </slider>
                         </subviews>
-                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                        <gestureRecognizers/>
-                        <connections>
-                            <outletCollection property="gestureRecognizers" destination="JKV-LY-x6d" appends="YES" id="Dk7-8G-Pba"/>
-                        </connections>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="kC3-j3-ajz" secondAttribute="centerX" id="KcM-XM-goG"/>
+                            <constraint firstAttribute="bottom" secondItem="kC3-j3-ajz" secondAttribute="bottom" constant="20" id="Wo0-iE-GTk"/>
+                            <constraint firstItem="8bC-Xf-vdC" firstAttribute="leading" secondItem="yNT-f6-f79" secondAttribute="leading" id="f3g-F9-IFC"/>
+                            <constraint firstItem="8bC-Xf-vdC" firstAttribute="top" secondItem="yNT-f6-f79" secondAttribute="top" id="gBI-bH-cd2"/>
+                            <constraint firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ua0-Ml-I3f"/>
+                            <constraint firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="wu0-Ta-Wxy"/>
+                        </constraints>
                     </view>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <connections>
                         <outlet property="bowlView" destination="8bC-Xf-vdC" id="nlM-eX-Hll"/>
                         <outlet property="compositionStepper" destination="kC3-j3-ajz" id="hRX-Me-Sdf"/>
+                        <outlet property="distortSlider" destination="YyU-8b-yRX" id="gQS-Zh-CHK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -42,6 +65,7 @@
                     </connections>
                 </panGestureRecognizer>
             </objects>
+            <point key="canvasLocation" x="-93" y="-101"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

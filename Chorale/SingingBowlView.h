@@ -14,6 +14,10 @@
 @interface SingingBowlView : UIView
 -(void) drawSetup:(SingingBowlSetup *) setup;
 -(void) drawBowlRimAtRadius:(CGFloat) radius withNote:(NSString *) note;
+-(void) continuouslyAnimateBowlAtRadius:(CGFloat) radius;
+-(void) changeBowlVolumeTo:(CGFloat) level;
+-(void) stopAnimatingBowl;
+
 
 @property (strong,nonatomic) UIColor *rimColour;
 @property (strong,nonatomic) UIColor *textColour;

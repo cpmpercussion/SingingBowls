@@ -20,6 +20,9 @@
 -(void) loggingServerFoundWithAddress: (NSString *) address andPort: (int) port andHostname:(NSString *) hostname;
 -(void) stoppedSearchingForLoggingServer;
 -(void) didReceiveMetatoneMessageFrom:(NSString*)device withName:(NSString*)name andState:(NSString*)state;
+-(void) didReceiveGestureMessageFor:(NSString*)device withClass:(NSString*)class;
+-(void) didReceiveEnsembleState:(NSString*)state withSpread:(NSNumber*)spread;
+-(void) didReceiveEnsembleEvent:(NSString*)event forDevice:(NSString*)device withMeasure:(NSNumber*)measure;
 
 @end
 
@@ -29,9 +32,9 @@
 @property (strong,nonatomic) F53OSCServer *oscServer;
 
 //@property (strong, nonatomic) OSCConnection *connection;
-@property (strong, nonatomic) NSString *remoteIPAddress;
-@property (nonatomic) NSInteger remotePort;
-@property (strong, nonatomic) NSString *remoteHostname;
+@property (strong, nonatomic) NSString *loggingIPAddress;
+@property (nonatomic) NSInteger loggingPort;
+@property (strong, nonatomic) NSString *loggingHostname;
 @property (strong, nonatomic) NSString *deviceID;
 @property (strong, nonatomic) NSString *localIPAddress;
 @property (strong, nonatomic) NSNetService *metatoneNetService;
