@@ -21,7 +21,7 @@
 -(void) stoppedSearchingForLoggingServer;
 -(void) didReceiveMetatoneMessageFrom:(NSString*)device withName:(NSString*)name andState:(NSString*)state;
 -(void) didReceiveGestureMessageFor:(NSString*)device withClass:(NSString*)class;
--(void) didReceiveEnsembleState:(NSString*)state withSpread:(NSNumber*)spread;
+-(void) didReceiveEnsembleState:(NSString*)state withSpread:(NSNumber*)spread withRatio:(NSNumber*)ratio;
 -(void) didReceiveEnsembleEvent:(NSString*)event forDevice:(NSString*)device withMeasure:(NSNumber*)measure;
 
 @end
@@ -36,6 +36,7 @@
 @property (nonatomic) NSInteger loggingPort;
 @property (strong, nonatomic) NSString *loggingHostname;
 @property (strong, nonatomic) NSString *deviceID;
+@property (strong,nonatomic) NSString *appID;
 @property (strong, nonatomic) NSString *localIPAddress;
 @property (strong, nonatomic) NSNetService *metatoneNetService;
 @property (strong, nonatomic) NSNetServiceBrowser *oscLoggerServiceBrowser;

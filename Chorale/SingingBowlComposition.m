@@ -25,7 +25,11 @@
     return [self.contents objectAtIndex:self.index];
 }
 - (NSArray *) nextSetup {
-    if (self.index + 1 < [self.contents count]) {
+    if (self.index + 1 == [self.contents count]) {
+        if (self.looping) {
+            self.index=0;
+        }
+    } else if (self.index + 1 < [self.contents count]) {
         self.index++;
     }
     return [self.contents objectAtIndex:self.index];

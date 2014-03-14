@@ -409,6 +409,7 @@
 		567B3A121898C88F000DDFD1 /* NSNumber+F53OSCNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = 567B3A001898C88F000DDFD1 /* NSNumber+F53OSCNumber.m */; };
 		567B3A131898C88F000DDFD1 /* NSString+F53OSCString.m in Sources */ = {isa = PBXBuildFile; fileRef = 567B3A021898C88F000DDFD1 /* NSString+F53OSCString.m */; };
 		567B3A141898C88F000DDFD1 /* README.markdown in Resources */ = {isa = PBXBuildFile; fileRef = 567B3A031898C88F000DDFD1 /* README.markdown */; };
+		568A0C6D18C96F41007E9A8C /* StudyInBowls1.m in Sources */ = {isa = PBXBuildFile; fileRef = 568A0C6C18C96F41007E9A8C /* StudyInBowls1.m */; };
 		56B7898F1897327D00B6AE22 /* SingingBowlComposition.m in Sources */ = {isa = PBXBuildFile; fileRef = 56B7898E1897327D00B6AE22 /* SingingBowlComposition.m */; };
 		56B789921897336800B6AE22 /* TestChoraleComposition.m in Sources */ = {isa = PBXBuildFile; fileRef = 56B789911897336800B6AE22 /* TestChoraleComposition.m */; };
 /* End PBXBuildFile section */
@@ -873,6 +874,8 @@
 		567B3A011898C88F000DDFD1 /* NSString+F53OSCString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+F53OSCString.h"; sourceTree = "<group>"; };
 		567B3A021898C88F000DDFD1 /* NSString+F53OSCString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+F53OSCString.m"; sourceTree = "<group>"; };
 		567B3A031898C88F000DDFD1 /* README.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.markdown; sourceTree = "<group>"; };
+		568A0C6B18C96F41007E9A8C /* StudyInBowls1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StudyInBowls1.h; sourceTree = "<group>"; };
+		568A0C6C18C96F41007E9A8C /* StudyInBowls1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StudyInBowls1.m; sourceTree = "<group>"; };
 		56B7898D1897327D00B6AE22 /* SingingBowlComposition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingingBowlComposition.h; sourceTree = "<group>"; };
 		56B7898E1897327D00B6AE22 /* SingingBowlComposition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingingBowlComposition.m; sourceTree = "<group>"; };
 		56B789901897336800B6AE22 /* TestChoraleComposition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestChoraleComposition.h; sourceTree = "<group>"; };
@@ -1439,6 +1442,8 @@
 				56B7898E1897327D00B6AE22 /* SingingBowlComposition.m */,
 				56B789901897336800B6AE22 /* TestChoraleComposition.h */,
 				56B789911897336800B6AE22 /* TestChoraleComposition.m */,
+				568A0C6B18C96F41007E9A8C /* StudyInBowls1.h */,
+				568A0C6C18C96F41007E9A8C /* StudyInBowls1.m */,
 			);
 			name = models;
 			sourceTree = "<group>";
@@ -1934,6 +1939,7 @@
 			files = (
 				5623DB7A188CDB3800AA6C14 /* ViewController.m in Sources */,
 				567B3A0A1898C88F000DDFD1 /* F53OSCSocket.m in Sources */,
+				568A0C6D18C96F41007E9A8C /* StudyInBowls1.m in Sources */,
 				565A2328188F94CA00093B32 /* SingingBowlSetup.m in Sources */,
 				567B3A041898C88F000DDFD1 /* F53OSCBundle.m in Sources */,
 				567B3A051898C88F000DDFD1 /* F53OSCClient.m in Sources */,

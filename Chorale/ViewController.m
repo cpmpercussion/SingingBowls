@@ -18,7 +18,8 @@
 #import "SingingBowlSetup.h"
 #import "SingingBowlView.h"
 #import "SingingBowlComposition.h"
-#import "TestChoraleComposition.h"
+//#import "TestChoraleComposition.h"
+#import "StudyInBowls1.h"
 
 @interface ViewController ()
 // Audio
@@ -82,9 +83,12 @@
     [PdBase subscribe:@"singvolume"];
     
     // Setup composition
-    self.composition = [[TestChoraleComposition alloc] init];
+//    self.composition = [[TestChoraleComposition alloc] init];
+    self.composition = [[StudyInBowls1 alloc] init];
+
     [self.compositionStepper setMinimumValue:0];
     [self.compositionStepper setMaximumValue:[self.composition numberOfSetups]];
+    [self.compositionStepper setWraps:YES];
     
     // Setup singing bowls
     self.bowlSetup = [[SingingBowlSetup alloc] initWithPitches:[NSMutableArray arrayWithArray:[self.composition firstSetup]]];
@@ -147,7 +151,7 @@
         
         // send angle message to PD.
         [PdBase sendFloat:[sender velocityInView:self.view].y/velHyp toReceiver:@"sinPanAngle"];
-        NSLog(@"%f",[sender velocityInView:self.view].y/velHyp);
+        //NSLog(@"%f",[sender velocityInView:self.view].y/velHyp);
         
         // send distance var to PD.
         CGFloat xTrans = [sender translationInView:self.view].x;
@@ -172,7 +176,7 @@
 }
 
 -(void)setDistortion:(float)level {
-    [PdBase sendFloat:level*100 toReceiver:@"distortlevel"];
+    [PdBase sendFloat:level toReceiver:@"distortlevel"];
 }
 
 
@@ -220,7 +224,7 @@
     if ([event isEqualToString:METATONE_NEWIDEA_MESSAGE]) {
         NSArray *newSetup = [self.composition nextSetup];
         [self applyNewSetup:newSetup];
-        [self.compositionStepper setValue:(self.compositionStepper.value + 1)];
+        //[self.compositionStepper setValue:(self.compositionStepper.value + 1)];
     }
     NSLog(@"EnsembleEvent: %@",event);
 }
@@ -229,11 +233,12 @@
     NSLog(@"Gesture: %@",class);
 }
 
--(void)didReceiveEnsembleState:(NSString *)state withSpread:(NSNumber *)spread {
+-(void)didReceiveEnsembleState:(NSString *)state withSpread:(NSNumber *)spread withRatio:(NSNumber*) ratio{
     NSLog(@"Ensemble State: %@",state);
-    [self.distortSlider setValue:[spread floatValue] animated:YES];
-    [self setDistortion:[spread floatValue]];
-
+    if ([state isEqualToString:@"divergence"] && [spread floatValue] < 10.0 && [spread floatValue] > -10.0) {
+        [self.distortSlider setValue:[spread floatValue] animated:YES];
+        [self setDistortion:[spread floatValue]];
+    }
 }
 
 @end

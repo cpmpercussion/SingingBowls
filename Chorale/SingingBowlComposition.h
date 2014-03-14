@@ -11,6 +11,7 @@
 @interface SingingBowlComposition : NSObject
 
 @property (strong,nonatomic) NSArray *contents;
+@property (nonatomic) bool looping;
 - (NSArray *) firstSetup;
 - (NSArray *) previousSetup;
 - (NSArray *) nextSetup;

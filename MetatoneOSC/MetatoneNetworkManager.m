@@ -20,6 +20,7 @@
     
     self.delegate = delegate;
     self.deviceID = [[UIDevice currentDevice].identifierForVendor UUIDString];
+    self.appID = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleDisplayName"];
     self.oscLogging = osclogging;
     self.loggingIPAddress = DEFAULT_ADDRESS;
     self.loggingPort = DEFAULT_PORT;
@@ -212,14 +213,14 @@
 
 -(void)sendMessageOnline
 {
-    NSArray *contents = @[self.deviceID];
+    NSArray *contents = @[self.deviceID,self.appID];
     F53OSCMessage *message = [F53OSCMessage messageWithAddressPattern:@"/metatone/online" arguments:contents];
     [self.oscClient sendPacket:message toHost:self.loggingIPAddress onPort:self.loggingPort];
 }
 
 -(void)sendMessageOffline
 {
-    NSArray *contents = @[self.deviceID];
+    NSArray *contents = @[self.deviceID,self.appID];
     F53OSCMessage *message = [F53OSCMessage messageWithAddressPattern:@"/metatone/offline"
                                                             arguments:contents];
     [self.oscClient sendPacket:message toHost:self.loggingIPAddress onPort:self.loggingPort];
@@ -262,7 +263,7 @@
         [self.delegate didReceiveGestureMessageFor:message.arguments[0] withClass:message.arguments[1]];
     } else if ([message.addressPattern isEqualToString:@"/metatone/classifier/ensemble/state"]) {
         //Ensemble State
-        [self.delegate didReceiveEnsembleState:message.arguments[0] withSpread:message.arguments[1]];
+        [self.delegate didReceiveEnsembleState:message.arguments[0] withSpread:message.arguments[1] withRatio:message.arguments[2]];
     } else if ([message.addressPattern isEqualToString:@"/metatone/classifier/ensemble/event/new_idea"]) {
         [self.delegate didReceiveEnsembleEvent:@"new_idea" forDevice:message.arguments[0] withMeasure:message.arguments[1]];
     } else if ([message.addressPattern isEqualToString:@"/metatone/classifier/ensemble/event/solo"]) {
