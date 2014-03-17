@@ -31,6 +31,7 @@
 @property (weak, nonatomic) IBOutlet SingingBowlView *bowlView;
 @property (nonatomic) CGFloat viewRadius;
 @property (weak, nonatomic) IBOutlet UISlider *distortSlider;
+@property (weak, nonatomic) IBOutlet UILabel *oscStatusLabel;
 @property (weak, nonatomic) IBOutlet UIStepper *compositionStepper;
 // Composition
 @property (strong,nonatomic) SingingBowlComposition *composition;
@@ -204,15 +205,15 @@
 
 #pragma mark - Metatone Network Methods
 -(void)searchingForLoggingServer {
-    
+    [self.oscStatusLabel setText:@"Searching for Classifier."];
 }
 
 -(void)stoppedSearchingForLoggingServer {
-    
+    [self.oscStatusLabel setText:@"No Classifier."];
 }
 
 -(void)loggingServerFoundWithAddress:(NSString *)address andPort:(int)port andHostname:(NSString *)hostname {
-    
+    [self.oscStatusLabel setText:[NSString stringWithFormat:@"Connected: %@",hostname]];
 }
 
 -(void)didReceiveMetatoneMessageFrom:(NSString *)device withName:(NSString *)name andState:(NSString *)state {
