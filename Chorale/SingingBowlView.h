@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "SingingBowlSetup.h"
+#import "NoteColours.h"
 
 
 
@@ -21,6 +22,8 @@
 
 @property (strong,nonatomic) UIColor *rimColour;
 @property (strong,nonatomic) UIColor *textColour;
+@property (strong,nonatomic) UIColor *tapColour;
+@property (strong,nonatomic) UIColor *swirlColour;
 @property (strong, nonatomic) NSMutableArray* rimLayers;
 
 

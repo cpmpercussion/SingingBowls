@@ -412,6 +412,7 @@
 		568A0C6D18C96F41007E9A8C /* StudyInBowls1.m in Sources */ = {isa = PBXBuildFile; fileRef = 568A0C6C18C96F41007E9A8C /* StudyInBowls1.m */; };
 		56B7898F1897327D00B6AE22 /* SingingBowlComposition.m in Sources */ = {isa = PBXBuildFile; fileRef = 56B7898E1897327D00B6AE22 /* SingingBowlComposition.m */; };
 		56B789921897336800B6AE22 /* TestChoraleComposition.m in Sources */ = {isa = PBXBuildFile; fileRef = 56B789911897336800B6AE22 /* TestChoraleComposition.m */; };
+		56C28DB6194A968400E015BB /* NoteColours.m in Sources */ = {isa = PBXBuildFile; fileRef = 56C28DB5194A968400E015BB /* NoteColours.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -880,6 +881,8 @@
 		56B7898E1897327D00B6AE22 /* SingingBowlComposition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingingBowlComposition.m; sourceTree = "<group>"; };
 		56B789901897336800B6AE22 /* TestChoraleComposition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestChoraleComposition.h; sourceTree = "<group>"; };
 		56B789911897336800B6AE22 /* TestChoraleComposition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestChoraleComposition.m; sourceTree = "<group>"; };
+		56C28DB4194A968400E015BB /* NoteColours.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteColours.h; sourceTree = "<group>"; };
+		56C28DB5194A968400E015BB /* NoteColours.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteColours.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1427,6 +1430,8 @@
 		56B7898A1897323F00B6AE22 /* views */ = {
 			isa = PBXGroup;
 			children = (
+				56C28DB4194A968400E015BB /* NoteColours.h */,
+				56C28DB5194A968400E015BB /* NoteColours.m */,
 				565A2322188F94AE00093B32 /* SingingBowlView.h */,
 				565A2323188F94AE00093B32 /* SingingBowlView.m */,
 			);
@@ -1943,6 +1948,7 @@
 				565A2328188F94CA00093B32 /* SingingBowlSetup.m in Sources */,
 				567B3A041898C88F000DDFD1 /* F53OSCBundle.m in Sources */,
 				567B3A051898C88F000DDFD1 /* F53OSCClient.m in Sources */,
+				56C28DB6194A968400E015BB /* NoteColours.m in Sources */,
 				567B3A0C1898C88F000DDFD1 /* GCDAsyncSocket.m in Sources */,
 				567B3A081898C88F000DDFD1 /* F53OSCParser.m in Sources */,
 				567B3A091898C88F000DDFD1 /* F53OSCServer.m in Sources */,

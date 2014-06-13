@@ -12,7 +12,7 @@
 #define CENTER_X 512
 #define CENTER_Y 384
 #define ROOTTWO 1.41421356237
-#define DISPLAYNOTENAME @NO
+#define DISPLAYNOTENAME false
 
 @interface SingingBowlView()
 @property (strong,nonatomic) CALayer *rimSubLayer;
@@ -32,8 +32,11 @@
         // Initialization code
         self.backgroundColor = [UIColor blackColor];
         self.rimColour = [UIColor whiteColor];
-        self.rimSubLayer = [[CALayer alloc] init];
         self.textColour = [UIColor whiteColor];
+        self.tapColour = [UIColor blueColor];
+        self.swirlColour = [UIColor greenColor];
+        
+        self.rimSubLayer = [[CALayer alloc] init];
         [self.layer addSublayer:self.rimSubLayer];
         self.multipleTouchEnabled = YES;
         self.totalRadius = [self viewRadius];
@@ -65,11 +68,11 @@
         CGFloat rimCenter = (i + 0.5) * edgeWidth;
         
         // make continuous rim layer
-        CAShapeLayer* continuousLayer = [self makeBowlLayerAtRadius:rimCenter withColour:[UIColor whiteColor] ofWidth:edgeWidth];
+        CAShapeLayer* continuousLayer = [self makeBowlLayerAtRadius:rimCenter withColour:[NoteColours colourForNote:noteNumber withSaturation:0.6] ofWidth:edgeWidth];
         [self.continuousEdgeLayers setObject:continuousLayer forKey:[NSNumber numberWithInt:noteNumber]];
         
         // make tap rim layer
-        CAShapeLayer* tapLayer = [self makeBowlLayerAtRadius:rimCenter withColour:[UIColor redColor] ofWidth:edgeWidth];
+        CAShapeLayer* tapLayer = [self makeBowlLayerAtRadius:rimCenter withColour:[NoteColours colourForNote:noteNumber withSaturation:1.0] ofWidth:edgeWidth];
         [self.tapEdgeLayers setObject:tapLayer forKey:[NSNumber numberWithInt:noteNumber]];
         //NSLog(@"Edge Layer %d at %f",i,rimCenter);
     }
@@ -87,18 +90,19 @@
     [self.rimSubLayer addSublayer:shapeLayer];
     [self.rimLayers addObject:shapeLayer];
     
-    CATextLayer *noteTextLayer = [CATextLayer layer];
-    CGFloat diagonaldistance = radius / ROOTTWO;
-    
-    noteTextLayer.string = note;
-    [noteTextLayer setFont:@"HelveticaNeue"];
-    noteTextLayer.fontSize = 20.f;
-    noteTextLayer.alignmentMode = kCAAlignmentCenter;
-    noteTextLayer.frame = CGRectMake(self.center.x + diagonaldistance, self.center.y + diagonaldistance,25.f,25.f);
-    
-    [self.rimSubLayer addSublayer:noteTextLayer];
-    [self.rimLayers addObject:noteTextLayer];
-    
+    if (DISPLAYNOTENAME) {
+        CATextLayer *noteTextLayer = [CATextLayer layer];
+        CGFloat diagonaldistance = radius / ROOTTWO;
+        
+        noteTextLayer.string = note;
+        [noteTextLayer setFont:@"HelveticaNeue"];
+        noteTextLayer.fontSize = 20.f;
+        noteTextLayer.alignmentMode = kCAAlignmentCenter;
+        noteTextLayer.frame = CGRectMake(self.center.x + diagonaldistance, self.center.y + diagonaldistance,25.f,25.f);
+        
+        [self.rimSubLayer addSublayer:noteTextLayer];
+        [self.rimLayers addObject:noteTextLayer];
+    }
 }
 
 - (UIBezierPath *)makeCircleAtLocation:(CGPoint)location radius:(CGFloat)radius
