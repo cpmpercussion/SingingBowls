@@ -62,9 +62,11 @@
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"manual_control_mode"]) {
         [self.distortSlider setHidden:NO];
         [self.compositionStepper setHidden:NO];
+        [self.oscStatusLabel setHidden:YES];
     } else {
         [self.distortSlider setHidden:YES];
         [self.compositionStepper setHidden:YES];
+        [self.oscStatusLabel setHidden:NO];
     }
     
     // Setup Pd
@@ -237,8 +239,18 @@
 -(void)didReceiveEnsembleState:(NSString *)state withSpread:(NSNumber *)spread withRatio:(NSNumber*) ratio{
     NSLog(@"Ensemble State: %@",state);
     if ([state isEqualToString:@"divergence"] && [spread floatValue] < 10.0 && [spread floatValue] > -10.0) {
-        [self.distortSlider setValue:[spread floatValue] animated:YES];
-        [self setDistortion:[spread floatValue]];
+        float newDistort = [spread floatValue];
+        [self.distortSlider setValue:newDistort animated:YES];
+        [self setDistortion:newDistort];
+        NSLog(@"Distortion Reduced to %f",newDistort);
+    } else {
+        float oldDistort = [self.distortSlider value];
+        float newDistort = oldDistort * 0.5;
+        if (newDistort <= 1 && newDistort >= 0) {
+            [self.distortSlider setValue:newDistort animated:YES];
+            [self setDistortion:newDistort];
+            NSLog(@"Distortion Reduced to %f",newDistort);
+        }
     }
 }
 

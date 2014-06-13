@@ -12,6 +12,7 @@
 #define CENTER_X 512
 #define CENTER_Y 384
 #define ROOTTWO 1.41421356237
+#define DISPLAYNOTENAME @NO
 
 @interface SingingBowlView()
 @property (strong,nonatomic) CALayer *rimSubLayer;
