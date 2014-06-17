@@ -17,8 +17,9 @@
 -(void) drawBowlRimAtRadius:(CGFloat) radius withNote:(NSString *) note;
 -(void) continuouslyAnimateBowlAtRadius:(CGFloat) radius;
 -(void) changeBowlVolumeTo:(CGFloat) level;
+-(void) changeContinuousAnimationSpeed:(CGFloat) speed;
 -(void) stopAnimatingBowl;
-
+-(void) changeContinuousColour:(CGFloat) amount forRadius:(CGFloat)radius;
 
 @property (strong,nonatomic) UIColor *rimColour;
 @property (strong,nonatomic) UIColor *textColour;

@@ -158,7 +158,9 @@
         [PdBase sendFloat:velocity toReceiver:@"singlevel" ];
         
         // send angle message to PD.
-        [PdBase sendFloat:[sender velocityInView:self.view].y/velHyp toReceiver:@"sinPanAngle"];
+        CGFloat angle = [sender velocityInView:self.view].y/velHyp;
+        [PdBase sendFloat:angle toReceiver:@"sinPanAngle"];
+        [self.bowlView changeContinuousColour:angle forRadius:[self calculateDistanceFromCenter:[sender locationInView:self.view]]];
         //NSLog(@"%f",[sender velocityInView:self.view].y/velHyp);
         
         // send distance var to PD.
@@ -167,6 +169,7 @@
         CGFloat trans = sqrt((xTrans * xTrans) + (yTrans * yTrans)) / IPAD_SCREEN_DIAGONAL_LENGTH;
         //NSLog(@"%f",trans);
         [PdBase sendFloat:trans toReceiver:@"panTranslation"];
+        [self.bowlView changeContinuousAnimationSpeed:(3*trans) + 0.1];
         
     } else if (([sender state] == UIGestureRecognizerStateEnded) || ([sender state] == UIGestureRecognizerStateCancelled)) { // panended
         [PdBase sendFloat:0 toReceiver:@"sing"];

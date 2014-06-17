@@ -55,6 +55,11 @@
     return [UIColor colorWithHue:[DEMAISTRE[midiDegree] floatValue]/360.0 saturation:sat brightness:1 alpha:1];
 }
 
++ (UIColor *) colourFornote:(int) midiNumber withSaturation:(float) sat andBend:(float) bend {
+    int midiDegree = midiNumber %12;
+    float bendDegrees = 8 * bend;
+    return [UIColor colorWithHue:([DEMAISTRE[midiDegree] floatValue] + bendDegrees)/360.0 saturation:sat brightness:1 alpha:1];
+}
 
 @end
 

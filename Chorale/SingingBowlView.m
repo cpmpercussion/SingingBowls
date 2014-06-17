@@ -30,7 +30,9 @@
     self = [super initWithCoder:aDecoder];
     if (self) {
         // Initialization code
-        self.backgroundColor = [UIColor blackColor];
+//        self.backgroundColor = [UIColor blackColor];
+        self.backgroundColor = [UIColor clearColor];
+
         self.rimColour = [UIColor whiteColor];
         self.textColour = [UIColor whiteColor];
         self.tapColour = [UIColor blueColor];
@@ -74,7 +76,6 @@
         // make tap rim layer
         CAShapeLayer* tapLayer = [self makeBowlLayerAtRadius:rimCenter withColour:[NoteColours colourForNote:noteNumber withSaturation:1.0] ofWidth:edgeWidth];
         [self.tapEdgeLayers setObject:tapLayer forKey:[NSNumber numberWithInt:noteNumber]];
-        //NSLog(@"Edge Layer %d at %f",i,rimCenter);
     }
 }
 
@@ -153,18 +154,22 @@
     layer.hidden = NO;
     
     CABasicAnimation *pulse = [CABasicAnimation animationWithKeyPath:@"lineWidth"];
-    pulse.fromValue = [NSNumber numberWithDouble:width * 0.95];
-    pulse.toValue = [NSNumber numberWithDouble:width * 1.05];
-    pulse.duration = 0.25;
+    pulse.fromValue = [NSNumber numberWithDouble:width * 0.90];
+    pulse.toValue = [NSNumber numberWithDouble:width * 1.10];
+    pulse.duration = 0.15;
     pulse.autoreverses = YES;
     pulse.repeatCount = HUGE_VALF;
     
     [layer addAnimation:pulse forKey:@"pulseAnimation"];
+
 }
+
+
 
 -(void) stopAnimatingBowl {
     for (CALayer *n in [self.continuousEdgeLayers objectEnumerator]) {
         n.hidden = YES;
+        //n.speed = 1.0;
     }
 }
 
@@ -174,6 +179,26 @@
     }
 }
 
+-(void) changeContinuousAnimationSpeed:(CGFloat) speed {
+    CGFloat newSpeed = speed;
+    //if (speed > 1) newSpeed = 1;
+    if (speed < 0) newSpeed = 0;
+//    NSLog(@"New Speed: %f", newSpeed);
+    for (CALayer *layer in [self.continuousEdgeLayers objectEnumerator]) {
+        layer.timeOffset = [layer convertTime:CACurrentMediaTime() fromLayer:nil];
+        layer.beginTime = CACurrentMediaTime();
+        layer.speed = newSpeed;
+    }
+}
+
+-(void) changeContinuousColour:(CGFloat) amount forRadius:(CGFloat)radius {
+    NSLog(@"New Colour Bend: %f", amount);
+    CGFloat newSaturation = 0.6 + (amount * 0.1);
+
+    int noteNumber = [self.currentSetup pitchAtRadius: [self fractionOfTotalRadiusFromRadius:radius]];
+    CAShapeLayer *layer = [self.continuousEdgeLayers objectForKey: [NSNumber numberWithInt:noteNumber]];
+    layer.strokeColor = [[NoteColours colourFornote:noteNumber withSaturation:newSaturation andBend:amount] CGColor];
+}
 
 #pragma mark - Touch
 -(void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -184,7 +209,6 @@
 }
 
 #pragma mark - Util
-
 -(CGFloat)calculateDistanceFromCenter:(CGPoint)touchPoint {
     CGFloat xDist = (touchPoint.x - self.center.x);
     CGFloat yDist = (touchPoint.y - self.center.y);

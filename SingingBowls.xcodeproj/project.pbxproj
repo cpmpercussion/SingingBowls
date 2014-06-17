@@ -392,6 +392,7 @@
 		5658053618C82C44003F3394 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5658053518C82C44003F3394 /* Settings.bundle */; };
 		565A2324188F94AE00093B32 /* SingingBowlView.m in Sources */ = {isa = PBXBuildFile; fileRef = 565A2323188F94AE00093B32 /* SingingBowlView.m */; };
 		565A2328188F94CA00093B32 /* SingingBowlSetup.m in Sources */ = {isa = PBXBuildFile; fileRef = 565A2327188F94CA00093B32 /* SingingBowlSetup.m */; };
+		5674AF24195011370052121E /* MetatoneEnsembleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5674AF23195011370052121E /* MetatoneEnsembleView.m */; };
 		567B3A041898C88F000DDFD1 /* F53OSCBundle.m in Sources */ = {isa = PBXBuildFile; fileRef = 567B39E31898C88F000DDFD1 /* F53OSCBundle.m */; };
 		567B3A051898C88F000DDFD1 /* F53OSCClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 567B39E51898C88F000DDFD1 /* F53OSCClient.m */; };
 		567B3A061898C88F000DDFD1 /* F53OSCMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 567B39E81898C88F000DDFD1 /* F53OSCMessage.m */; };
@@ -840,6 +841,8 @@
 		565A2323188F94AE00093B32 /* SingingBowlView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingingBowlView.m; sourceTree = "<group>"; };
 		565A2326188F94CA00093B32 /* SingingBowlSetup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingingBowlSetup.h; sourceTree = "<group>"; };
 		565A2327188F94CA00093B32 /* SingingBowlSetup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingingBowlSetup.m; sourceTree = "<group>"; };
+		5674AF22195011370052121E /* MetatoneEnsembleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MetatoneEnsembleView.h; sourceTree = "<group>"; };
+		5674AF23195011370052121E /* MetatoneEnsembleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MetatoneEnsembleView.m; sourceTree = "<group>"; };
 		567B39E11898C88F000DDFD1 /* F53OSC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = F53OSC.h; sourceTree = "<group>"; };
 		567B39E21898C88F000DDFD1 /* F53OSCBundle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = F53OSCBundle.h; sourceTree = "<group>"; };
 		567B39E31898C88F000DDFD1 /* F53OSCBundle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = F53OSCBundle.m; sourceTree = "<group>"; };
@@ -1434,6 +1437,8 @@
 				56C28DB5194A968400E015BB /* NoteColours.m */,
 				565A2322188F94AE00093B32 /* SingingBowlView.h */,
 				565A2323188F94AE00093B32 /* SingingBowlView.m */,
+				5674AF22195011370052121E /* MetatoneEnsembleView.h */,
+				5674AF23195011370052121E /* MetatoneEnsembleView.m */,
 			);
 			name = views;
 			sourceTree = "<group>";
@@ -1961,6 +1966,7 @@
 				567B3A111898C88F000DDFD1 /* NSDate+F53OSCTimeTag.m in Sources */,
 				56B789921897336800B6AE22 /* TestChoraleComposition.m in Sources */,
 				567B3A131898C88F000DDFD1 /* NSString+F53OSCString.m in Sources */,
+				5674AF24195011370052121E /* MetatoneEnsembleView.m in Sources */,
 				567B3A0F1898C88F000DDFD1 /* MetatoneNetworkManager.m in Sources */,
 				5623DB70188CDB3800AA6C14 /* main.m in Sources */,
 				567B3A061898C88F000DDFD1 /* F53OSCMessage.m in Sources */,

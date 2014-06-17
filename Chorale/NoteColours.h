@@ -11,4 +11,5 @@
 @interface NoteColours : SingingBowlComposition
 + (UIColor *) colourForNote:(int) midiNumber;
 + (UIColor *) colourForNote:(int) midiNumber withSaturation:(float) sat;
++ (UIColor *) colourFornote:(int) midiNumber withSaturation:(float) sat andBend:(float) bend;
 @end
