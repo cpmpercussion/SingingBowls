@@ -27,12 +27,16 @@
 @property (strong, nonatomic) SingingBowlSetup *bowlSetup;
 // Network
 @property (strong,nonatomic) MetatoneNetworkManager *networkManager;
+@property (strong,nonatomic) NSMutableDictionary *metatoneClients;
 //UI
 @property (weak, nonatomic) IBOutlet SingingBowlView *bowlView;
 @property (nonatomic) CGFloat viewRadius;
 @property (weak, nonatomic) IBOutlet UISlider *distortSlider;
 @property (weak, nonatomic) IBOutlet UILabel *oscStatusLabel;
 @property (weak, nonatomic) IBOutlet UIStepper *compositionStepper;
+@property (weak, nonatomic) IBOutlet UILabel *playerStatusLabel;
+@property (weak, nonatomic) IBOutlet UILabel *gestureStatusLabel;
+@property (weak, nonatomic) IBOutlet UILabel *ensembleStatusLabel;
 // Composition
 @property (strong,nonatomic) SingingBowlComposition *composition;
 @end
@@ -100,6 +104,7 @@
     [self.bowlView drawSetup:self.bowlSetup];
     
     // Setup Network
+    self.metatoneClients = [[NSMutableDictionary alloc] init];
     self.networkManager = [[MetatoneNetworkManager alloc] initWithDelegate:self shouldOscLog:YES];
 }
 
@@ -214,6 +219,20 @@
     [self.oscStatusLabel setText:@"No Classifier."];
 }
 
+-(void)metatoneClientFoundWithAddress:(NSString *)address andPort:(int)port andHostname:(NSString *)hostname {
+    [self.metatoneClients setObject:address forKey:hostname];
+    NSString *clientNames = @"";
+    for (NSString* name in [self.metatoneClients keyEnumerator]) {
+        clientNames = [clientNames stringByAppendingString:name];
+        clientNames = [clientNames stringByAppendingString:@"\n"];
+    }
+    [self.playerStatusLabel setText:clientNames];
+}
+
+-(void)metatoneClientRemovedwithAddress:(NSString *)address andPort:(int)port andHostname:(NSString *)hostname {
+    
+}
+
 -(void)loggingServerFoundWithAddress:(NSString *)address andPort:(int)port andHostname:(NSString *)hostname {
     [self.oscStatusLabel setText:[NSString stringWithFormat:@"Connected: %@",hostname]];
 }
@@ -234,10 +253,12 @@
 
 -(void)didReceiveGestureMessageFor:(NSString *)device withClass:(NSString *)class {
     NSLog(@"Gesture: %@",class);
+    [self.gestureStatusLabel setText:class];
 }
 
 -(void)didReceiveEnsembleState:(NSString *)state withSpread:(NSNumber *)spread withRatio:(NSNumber*) ratio{
     NSLog(@"Ensemble State: %@",state);
+    [self.ensembleStatusLabel setText:state];
     if ([state isEqualToString:@"divergence"] && [spread floatValue] < 10.0 && [spread floatValue] > -10.0) {
         float newDistort = [spread floatValue];
         [self.distortSlider setValue:newDistort animated:YES];
@@ -252,6 +273,11 @@
             NSLog(@"Distortion Reduced to %f",newDistort);
         }
     }
+}
+
+- (BOOL)prefersStatusBarHidden
+{
+    return YES;
 }
 
 @end

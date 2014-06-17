@@ -23,6 +23,8 @@
 -(void) didReceiveGestureMessageFor:(NSString*)device withClass:(NSString*)class;
 -(void) didReceiveEnsembleState:(NSString*)state withSpread:(NSNumber*)spread withRatio:(NSNumber*)ratio;
 -(void) didReceiveEnsembleEvent:(NSString*)event forDevice:(NSString*)device withMeasure:(NSNumber*)measure;
+-(void) metatoneClientFoundWithAddress: (NSString *) address andPort: (int) port andHostname:(NSString *) hostname;
+-(void) metatoneClientRemovedwithAddress: (NSString *) address andPort: (int) port andHostname:(NSString *) hostname;
 
 @end
 

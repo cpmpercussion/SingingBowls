@@ -48,7 +48,8 @@
     if (self.metatoneNetService != nil) {
         [self.metatoneNetService setDelegate: self];
         [self.metatoneNetService publishWithOptions:0];
-        NSLog(@"NETWORK MANAGER: Metatone NetService Published.");
+        NSLog(@"NETWORK MANAGER: Metatone NetService Published - name: %@", [UIDevice currentDevice].name);
+        
     }
     
     
@@ -100,6 +101,10 @@
 -(void)netServiceBrowser:(NSNetServiceBrowser *)aNetServiceBrowser didFindService:(NSNetService *)aNetService moreComing:(BOOL)moreComing {
     
     if ([[aNetService type] isEqualToString:METATONE_SERVICE_TYPE]) {
+        if ([aNetService isEqual:self.metatoneNetService]) {
+            NSLog(@"NETWORK MANAGER: Found own metatone service - ignoring.");
+            return;
+        }
         [aNetService setDelegate:self];
         [aNetService resolveWithTimeout:5.0];
         [self.remoteMetatoneNetServices addObject:aNetService];
@@ -127,10 +132,11 @@
                                                sizeof(addressBuffer));
             int port = ntohs(socketAddress->sin_port);
             if (addressStr && port) {
-                NSLog(@"NETWORK MANAGER: Resolved service of type %@ at %s:%d",
+                NSLog(@"NETWORK MANAGER: Resolved service of type %@ at %s:%d - %@",
                       [sender type],
                       addressStr,
-                      port);
+                      port,
+                      sender.hostName);
                 firstAddress = [NSString stringWithFormat:@"%s",addressStr];
                 firstPort = port;
                 break;
@@ -155,6 +161,7 @@
         // Need to also check if address is already in the array.
         if (![firstAddress isEqualToString:self.localIPAddress] && ![firstAddress isEqualToString:@"127.0.0.1"]) {
             [self.remoteMetatoneIPAddresses addObject:@[firstAddress,[NSNumber numberWithInt:firstPort]]];
+            [self.delegate metatoneClientFoundWithAddress:firstAddress andPort:firstPort andHostname:sender.hostName];
             NSLog(@"NETWORK MANAGER: Resolved and Connected to a MetatoneApp Service.");
         }
     }
