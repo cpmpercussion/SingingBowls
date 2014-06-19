@@ -192,9 +192,8 @@
 }
 
 -(void) changeContinuousColour:(CGFloat) amount forRadius:(CGFloat)radius {
-    NSLog(@"New Colour Bend: %f", amount);
+//    NSLog(@"New Colour Bend: %f", amount);
     CGFloat newSaturation = 0.6 + (amount * 0.1);
-
     int noteNumber = [self.currentSetup pitchAtRadius: [self fractionOfTotalRadiusFromRadius:radius]];
     CAShapeLayer *layer = [self.continuousEdgeLayers objectForKey: [NSNumber numberWithInt:noteNumber]];
     layer.strokeColor = [[NoteColours colourFornote:noteNumber withSaturation:newSaturation andBend:amount] CGColor];

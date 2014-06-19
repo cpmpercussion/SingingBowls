@@ -17,9 +17,11 @@
 #import "ScaleMaker.h"
 #import "SingingBowlSetup.h"
 #import "SingingBowlView.h"
+#import "MetatoneEnsembleView.h"
 #import "SingingBowlComposition.h"
 //#import "TestChoraleComposition.h"
-#import "StudyInBowls1.h"
+//#import "StudyInBowls1.h"
+#import "GenerativeSetupComposition.h"
 
 @interface ViewController ()
 // Audio
@@ -30,6 +32,7 @@
 @property (strong,nonatomic) NSMutableDictionary *metatoneClients;
 //UI
 @property (weak, nonatomic) IBOutlet SingingBowlView *bowlView;
+@property (weak, nonatomic) IBOutlet MetatoneEnsembleView *ensembleView;
 @property (nonatomic) CGFloat viewRadius;
 @property (weak, nonatomic) IBOutlet UISlider *distortSlider;
 @property (weak, nonatomic) IBOutlet UILabel *oscStatusLabel;
@@ -80,8 +83,6 @@
         NSLog(@"audioController initialised.");
     }
     
-    
-    
     [PdBase openFile:@"SoundScraper.pd" path:[[NSBundle mainBundle] bundlePath]];
     [self.audioController setActive:YES];
     [self.audioController print];
@@ -91,7 +92,8 @@
     
     // Setup composition
 //    self.composition = [[TestChoraleComposition alloc] init];
-    self.composition = [[StudyInBowls1 alloc] init];
+//    self.composition = [[StudyInBowls1 alloc] init];
+    self.composition = [[GenerativeSetupComposition alloc] init];
 
     [self.compositionStepper setMinimumValue:0];
     [self.compositionStepper setMaximumValue:[self.composition numberOfSetups]];
@@ -230,6 +232,7 @@
         clientNames = [clientNames stringByAppendingString:@"\n"];
     }
     [self.playerStatusLabel setText:clientNames];
+    [self.ensembleView drawEnsemble:self.metatoneClients];
 }
 
 -(void)metatoneClientRemovedwithAddress:(NSString *)address andPort:(int)port andHostname:(NSString *)hostname {

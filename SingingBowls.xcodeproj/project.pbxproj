@@ -387,8 +387,9 @@
 		5623DE7C188CDCEF00AA6C14 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5623DE7B188CDCEF00AA6C14 /* CoreAudio.framework */; };
 		5623DE80188CDD1900AA6C14 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5623DE7F188CDD1900AA6C14 /* AudioToolbox.framework */; };
 		5623DE82188CDD2B00AA6C14 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5623DE81188CDD2B00AA6C14 /* QuartzCore.framework */; };
-		5623DE85188CE34400AA6C14 /* ScaleMaker.m in Sources */ = {isa = PBXBuildFile; fileRef = 5623DE84188CE34400AA6C14 /* ScaleMaker.m */; };
 		5623DE88188CE4F800AA6C14 /* libpd-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5623DE76188CDCDF00AA6C14 /* libpd-ios.a */; };
+		564C44B31952B05500FD0E8B /* GenerativeSetupComposition.m in Sources */ = {isa = PBXBuildFile; fileRef = 564C44B21952B05500FD0E8B /* GenerativeSetupComposition.m */; };
+		564C44B71952BE7500FD0E8B /* ScaleMaker.m in Sources */ = {isa = PBXBuildFile; fileRef = 564C44B61952BE7500FD0E8B /* ScaleMaker.m */; };
 		5658053618C82C44003F3394 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5658053518C82C44003F3394 /* Settings.bundle */; };
 		565A2324188F94AE00093B32 /* SingingBowlView.m in Sources */ = {isa = PBXBuildFile; fileRef = 565A2323188F94AE00093B32 /* SingingBowlView.m */; };
 		565A2328188F94CA00093B32 /* SingingBowlSetup.m in Sources */ = {isa = PBXBuildFile; fileRef = 565A2327188F94CA00093B32 /* SingingBowlSetup.m */; };
@@ -834,8 +835,10 @@
 		5623DE7B188CDCEF00AA6C14 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
 		5623DE7F188CDD1900AA6C14 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		5623DE81188CDD2B00AA6C14 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		5623DE83188CE34400AA6C14 /* ScaleMaker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ScaleMaker.h; path = ../SoundScraper/ScaleMaker.h; sourceTree = "<group>"; };
-		5623DE84188CE34400AA6C14 /* ScaleMaker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ScaleMaker.m; path = ../SoundScraper/ScaleMaker.m; sourceTree = "<group>"; };
+		564C44B11952B05500FD0E8B /* GenerativeSetupComposition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenerativeSetupComposition.h; sourceTree = "<group>"; };
+		564C44B21952B05500FD0E8B /* GenerativeSetupComposition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenerativeSetupComposition.m; sourceTree = "<group>"; };
+		564C44B51952BE7500FD0E8B /* ScaleMaker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScaleMaker.h; sourceTree = "<group>"; };
+		564C44B61952BE7500FD0E8B /* ScaleMaker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScaleMaker.m; sourceTree = "<group>"; };
 		5658053518C82C44003F3394 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		565A2322188F94AE00093B32 /* SingingBowlView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingingBowlView.h; sourceTree = "<group>"; };
 		565A2323188F94AE00093B32 /* SingingBowlView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingingBowlView.m; sourceTree = "<group>"; };
@@ -957,8 +960,6 @@
 		5623DB69188CDB3800AA6C14 /* Chorale */ = {
 			isa = PBXGroup;
 			children = (
-				5623DE83188CE34400AA6C14 /* ScaleMaker.h */,
-				5623DE84188CE34400AA6C14 /* ScaleMaker.m */,
 				5623DB72188CDB3800AA6C14 /* AppDelegate.h */,
 				5623DB73188CDB3800AA6C14 /* AppDelegate.m */,
 				5623DB75188CDB3800AA6C14 /* Main.storyboard */,
@@ -1454,6 +1455,10 @@
 				56B789911897336800B6AE22 /* TestChoraleComposition.m */,
 				568A0C6B18C96F41007E9A8C /* StudyInBowls1.h */,
 				568A0C6C18C96F41007E9A8C /* StudyInBowls1.m */,
+				564C44B11952B05500FD0E8B /* GenerativeSetupComposition.h */,
+				564C44B21952B05500FD0E8B /* GenerativeSetupComposition.m */,
+				564C44B51952BE7500FD0E8B /* ScaleMaker.h */,
+				564C44B61952BE7500FD0E8B /* ScaleMaker.m */,
 			);
 			name = models;
 			sourceTree = "<group>";
@@ -1957,6 +1962,7 @@
 				567B3A0C1898C88F000DDFD1 /* GCDAsyncSocket.m in Sources */,
 				567B3A081898C88F000DDFD1 /* F53OSCParser.m in Sources */,
 				567B3A091898C88F000DDFD1 /* F53OSCServer.m in Sources */,
+				564C44B31952B05500FD0E8B /* GenerativeSetupComposition.m in Sources */,
 				567B3A071898C88F000DDFD1 /* F53OSCPacket.m in Sources */,
 				567B3A0B1898C88F000DDFD1 /* F53OSCTimeTag.m in Sources */,
 				567B3A0D1898C88F000DDFD1 /* GCDAsyncUdpSocket.m in Sources */,
@@ -1965,13 +1971,13 @@
 				5623DB74188CDB3800AA6C14 /* AppDelegate.m in Sources */,
 				567B3A111898C88F000DDFD1 /* NSDate+F53OSCTimeTag.m in Sources */,
 				56B789921897336800B6AE22 /* TestChoraleComposition.m in Sources */,
+				564C44B71952BE7500FD0E8B /* ScaleMaker.m in Sources */,
 				567B3A131898C88F000DDFD1 /* NSString+F53OSCString.m in Sources */,
 				5674AF24195011370052121E /* MetatoneEnsembleView.m in Sources */,
 				567B3A0F1898C88F000DDFD1 /* MetatoneNetworkManager.m in Sources */,
 				5623DB70188CDB3800AA6C14 /* main.m in Sources */,
 				567B3A061898C88F000DDFD1 /* F53OSCMessage.m in Sources */,
 				567B3A101898C88F000DDFD1 /* NSData+F53OSCBlob.m in Sources */,
-				5623DE85188CE34400AA6C14 /* ScaleMaker.m in Sources */,
 				567B3A121898C88F000DDFD1 /* NSNumber+F53OSCNumber.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

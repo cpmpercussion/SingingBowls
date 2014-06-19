@@ -19,4 +19,11 @@
 +(int) lydian:(int)base withNote:(int)note;
 +(int) lydianSharpFive:(int)base withNote:(int)note;
 
++(int) mixoFlatSix:(int)base withNote:(int)note;
++(int) octatonic:(int)base withNote:(int)note;
++(int) wholeTone:(int)base withNote:(int)note;
+
+
++(int) noteForScale:(NSString *)scale withBase:(int)base withNote:(int)note;
+
 @end

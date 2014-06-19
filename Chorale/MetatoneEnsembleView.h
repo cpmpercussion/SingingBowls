@@ -9,5 +9,10 @@
 #import <UIKit/UIKit.h>
 
 @interface MetatoneEnsembleView : UIView
+@property NSMutableDictionary *metatoneEnsembleAddresses;
+@property NSMutableDictionary *ensembleLayers;
+@property CALayer *ensembleLayerContainer;
+
+-(void) drawEnsemble:(NSMutableDictionary *)newEnsembleDictionary;
 
 @end

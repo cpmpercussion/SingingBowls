@@ -20,6 +20,14 @@
                                 <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                 <subviews>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="U7q-YO-31Y" customClass="MetatoneEnsembleView">
+                                        <rect key="frame" x="0.0" y="920" width="768" height="104"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <accessibility key="accessibilityConfiguration">
+                                            <accessibilityTraits key="traits" none="YES" notEnabled="YES"/>
+                                        </accessibility>
+                                    </view>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Metatone Ensemble Status" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="amy-rP-Abp">
                                         <rect key="frame" x="20" y="983" width="207" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -93,6 +101,7 @@
                         <outlet property="compositionStepper" destination="kC3-j3-ajz" id="hRX-Me-Sdf"/>
                         <outlet property="distortSlider" destination="YyU-8b-yRX" id="gQS-Zh-CHK"/>
                         <outlet property="ensembleStatusLabel" destination="amy-rP-Abp" id="OXr-Bg-pbe"/>
+                        <outlet property="ensembleView" destination="U7q-YO-31Y" id="ZNB-dX-Vdk"/>
                         <outlet property="gestureStatusLabel" destination="Ezi-AO-jQ3" id="YjC-AS-84a"/>
                         <outlet property="oscStatusLabel" destination="Owk-aY-7Io" id="o3y-7Q-Yn0"/>
                         <outlet property="playerStatusLabel" destination="EPW-aI-xkd" id="UyT-g0-O3i"/>
