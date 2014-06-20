@@ -45,9 +45,6 @@
             [result addObject:setup];
         }
     }
-    
-//    NSLog(@"%@", [result description]);
-    
     return [NSArray arrayWithArray:result];
 }
 
@@ -56,7 +53,6 @@
     NSMutableArray *result = [[NSMutableArray alloc] init];
     for (int i = 0; i < k; i++) {
         NSNumber *pickedObject = (NSNumber *)[input objectAtIndex:arc4random_uniform((int)[input count])];
-        
         [result addObject:pickedObject];
         [input removeObject:pickedObject];
     }

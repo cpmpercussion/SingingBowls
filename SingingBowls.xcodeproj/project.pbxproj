@@ -21,7 +21,6 @@
 		5623DB85188CDB3800AA6C14 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5623DB67188CDB3800AA6C14 /* UIKit.framework */; };
 		5623DB8D188CDB3800AA6C14 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5623DB8B188CDB3800AA6C14 /* InfoPlist.strings */; };
 		5623DB8F188CDB3800AA6C14 /* ChoraleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5623DB8E188CDB3800AA6C14 /* ChoraleTests.m */; };
-		5623DD06188CDBA100AA6C14 /* almglockenC.wav in Resources */ = {isa = PBXBuildFile; fileRef = 5623DB9B188CDB9F00AA6C14 /* almglockenC.wav */; };
 		5623DD07188CDBA100AA6C14 /* bellsynth.pd in Resources */ = {isa = PBXBuildFile; fileRef = 5623DB9C188CDB9F00AA6C14 /* bellsynth.pd */; };
 		5623DD08188CDBA100AA6C14 /* _markovanal.pd in Resources */ = {isa = PBXBuildFile; fileRef = 5623DB9E188CDB9F00AA6C14 /* _markovanal.pd */; };
 		5623DD09188CDBA100AA6C14 /* a.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5623DB9F188CDB9F00AA6C14 /* a.txt */; };
@@ -388,6 +387,12 @@
 		5623DE80188CDD1900AA6C14 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5623DE7F188CDD1900AA6C14 /* AudioToolbox.framework */; };
 		5623DE82188CDD2B00AA6C14 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5623DE81188CDD2B00AA6C14 /* QuartzCore.framework */; };
 		5623DE88188CE4F800AA6C14 /* libpd-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5623DE76188CDCDF00AA6C14 /* libpd-ios.a */; };
+		5649D6D21953CA4500B4B93C /* almglockenC.wav in Resources */ = {isa = PBXBuildFile; fileRef = 5649D6D11953CA4500B4B93C /* almglockenC.wav */; };
+		5649D6D81953CA5200B4B93C /* bowl.wav in Resources */ = {isa = PBXBuildFile; fileRef = 5649D6D31953CA5200B4B93C /* bowl.wav */; };
+		5649D6D91953CA5200B4B93C /* crotale.wav in Resources */ = {isa = PBXBuildFile; fileRef = 5649D6D41953CA5200B4B93C /* crotale.wav */; };
+		5649D6DA1953CA5200B4B93C /* gong.wav in Resources */ = {isa = PBXBuildFile; fileRef = 5649D6D51953CA5200B4B93C /* gong.wav */; };
+		5649D6DB1953CA5200B4B93C /* marimba.wav in Resources */ = {isa = PBXBuildFile; fileRef = 5649D6D61953CA5200B4B93C /* marimba.wav */; };
+		5649D6DC1953CA5200B4B93C /* xylo.wav in Resources */ = {isa = PBXBuildFile; fileRef = 5649D6D71953CA5200B4B93C /* xylo.wav */; };
 		564C44B31952B05500FD0E8B /* GenerativeSetupComposition.m in Sources */ = {isa = PBXBuildFile; fileRef = 564C44B21952B05500FD0E8B /* GenerativeSetupComposition.m */; };
 		564C44B71952BE7500FD0E8B /* ScaleMaker.m in Sources */ = {isa = PBXBuildFile; fileRef = 564C44B61952BE7500FD0E8B /* ScaleMaker.m */; };
 		5658053618C82C44003F3394 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5658053518C82C44003F3394 /* Settings.bundle */; };
@@ -468,7 +473,6 @@
 		5623DB8A188CDB3800AA6C14 /* SingingBowlsTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SingingBowlsTests-Info.plist"; sourceTree = "<group>"; };
 		5623DB8C188CDB3800AA6C14 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		5623DB8E188CDB3800AA6C14 /* ChoraleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChoraleTests.m; sourceTree = "<group>"; };
-		5623DB9B188CDB9F00AA6C14 /* almglockenC.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = almglockenC.wav; sourceTree = "<group>"; };
 		5623DB9C188CDB9F00AA6C14 /* bellsynth.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bellsynth.pd; sourceTree = "<group>"; };
 		5623DB9E188CDB9F00AA6C14 /* _markovanal.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = _markovanal.pd; sourceTree = "<group>"; };
 		5623DB9F188CDB9F00AA6C14 /* a.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = a.txt; sourceTree = "<group>"; };
@@ -835,6 +839,12 @@
 		5623DE7B188CDCEF00AA6C14 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
 		5623DE7F188CDD1900AA6C14 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		5623DE81188CDD2B00AA6C14 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		5649D6D11953CA4500B4B93C /* almglockenC.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = almglockenC.wav; path = samples/almglockenC.wav; sourceTree = "<group>"; };
+		5649D6D31953CA5200B4B93C /* bowl.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = bowl.wav; path = samples/bowl.wav; sourceTree = "<group>"; };
+		5649D6D41953CA5200B4B93C /* crotale.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = crotale.wav; path = samples/crotale.wav; sourceTree = "<group>"; };
+		5649D6D51953CA5200B4B93C /* gong.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = gong.wav; path = samples/gong.wav; sourceTree = "<group>"; };
+		5649D6D61953CA5200B4B93C /* marimba.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = marimba.wav; path = samples/marimba.wav; sourceTree = "<group>"; };
+		5649D6D71953CA5200B4B93C /* xylo.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = xylo.wav; path = samples/xylo.wav; sourceTree = "<group>"; };
 		564C44B11952B05500FD0E8B /* GenerativeSetupComposition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenerativeSetupComposition.h; sourceTree = "<group>"; };
 		564C44B21952B05500FD0E8B /* GenerativeSetupComposition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenerativeSetupComposition.m; sourceTree = "<group>"; };
 		564C44B51952BE7500FD0E8B /* ScaleMaker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScaleMaker.h; sourceTree = "<group>"; };
@@ -1006,7 +1016,7 @@
 		5623DB9A188CDB9F00AA6C14 /* SoundScraper */ = {
 			isa = PBXGroup;
 			children = (
-				5623DB9B188CDB9F00AA6C14 /* almglockenC.wav */,
+				5649D6CF1953CA2700B4B93C /* samples */,
 				5623DB9C188CDB9F00AA6C14 /* bellsynth.pd */,
 				5623DB9D188CDB9F00AA6C14 /* rj */,
 				5623DD05188CDBA100AA6C14 /* SoundScraper.pd */,
@@ -1389,6 +1399,19 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		5649D6CF1953CA2700B4B93C /* samples */ = {
+			isa = PBXGroup;
+			children = (
+				5649D6D31953CA5200B4B93C /* bowl.wav */,
+				5649D6D41953CA5200B4B93C /* crotale.wav */,
+				5649D6D51953CA5200B4B93C /* gong.wav */,
+				5649D6D61953CA5200B4B93C /* marimba.wav */,
+				5649D6D71953CA5200B4B93C /* xylo.wav */,
+				5649D6D11953CA4500B4B93C /* almglockenC.wav */,
+			);
+			name = samples;
+			sourceTree = "<group>";
+		};
 		567B39E01898C88F000DDFD1 /* MetatoneOSC */ = {
 			isa = PBXGroup;
 			children = (
@@ -1577,6 +1600,7 @@
 				5623DD26188CDBA100AA6C14 /* c_madsrj.pd in Resources */,
 				5623DDDB188CDBA100AA6C14 /* r_#touch.pd in Resources */,
 				5623DD43188CDBA100AA6C14 /* e_alias.pd in Resources */,
+				5649D6D91953CA5200B4B93C /* crotale.wav in Resources */,
 				5623DE1C188CDBA100AA6C14 /* u_bandpass2-help.pd in Resources */,
 				5623DE00188CDBA100AA6C14 /* s_loopsmooth.pd in Resources */,
 				5623DE6C188CDBA200AA6C14 /* u_wrandom-help.pd in Resources */,
@@ -1630,7 +1654,6 @@
 				5623DB77188CDB3800AA6C14 /* Main.storyboard in Resources */,
 				5623DDF7188CDBA100AA6C14 /* s_fplaytable2.pd in Resources */,
 				5623DD07188CDBA100AA6C14 /* bellsynth.pd in Resources */,
-				5623DD06188CDBA100AA6C14 /* almglockenC.wav in Resources */,
 				5623DDB3188CDBA100AA6C14 /* m_intv2ratio-help.pd in Resources */,
 				5623DD5A188CDBA100AA6C14 /* e_freqshift.pd in Resources */,
 				5623DDDE188CDBA100AA6C14 /* rj_image-help.pd in Resources */,
@@ -1682,9 +1705,11 @@
 				5623DD21188CDBA100AA6C14 /* c_lfo-help.pd in Resources */,
 				5623DE6D188CDBA200AA6C14 /* u_wrandom.pd in Resources */,
 				5623DE0F188CDBA100AA6C14 /* s_rhodey-help.pd in Resources */,
+				5649D6DC1953CA5200B4B93C /* xylo.wav in Resources */,
 				5623DD6D188CDBA100AA6C14 /* e_platereverb.pd in Resources */,
 				5623DE2E188CDBA100AA6C14 /* u_highpass.pd in Resources */,
 				5623DD39188CDBA100AA6C14 /* c_tobus-help.pd in Resources */,
+				5649D6D81953CA5200B4B93C /* bowl.wav in Resources */,
 				5623DD88188CDBA100AA6C14 /* g_hsl.pd in Resources */,
 				5623DD2A188CDBA100AA6C14 /* c_mfade3.pd in Resources */,
 				5623DE65188CDBA200AA6C14 /* u_spinner-help.pd in Resources */,
@@ -1729,6 +1754,7 @@
 				5623DDAA188CDBA100AA6C14 /* m_accel_status.pd in Resources */,
 				5623DE4A188CDBA200AA6C14 /* u_lowpassq.pd in Resources */,
 				5623DDF3188CDBA100AA6C14 /* s_fmoscil-help.pd in Resources */,
+				5649D6D21953CA4500B4B93C /* almglockenC.wav in Resources */,
 				5623DD82188CDBA100AA6C14 /* g.txt in Resources */,
 				5623DD17188CDBA100AA6C14 /* c_cpfade-help.pd in Resources */,
 				567B3A141898C88F000DDFD1 /* README.markdown in Resources */,
@@ -1853,7 +1879,9 @@
 				5623DD1A188CDBA100AA6C14 /* c_drunk.pd in Resources */,
 				5623DD0F188CDBA100AA6C14 /* c_adsr-help.pd in Resources */,
 				5623DDB8188CDBA100AA6C14 /* m_majorscale.pd in Resources */,
+				5649D6DA1953CA5200B4B93C /* gong.wav in Resources */,
 				5623DD8F188CDBA100AA6C14 /* g_pattern32-help.pd in Resources */,
+				5649D6DB1953CA5200B4B93C /* marimba.wav in Resources */,
 				5623DDC3188CDBA100AA6C14 /* m_scale-help.pd in Resources */,
 				5623DE67188CDBA200AA6C14 /* u_splicetrans-help.pd in Resources */,
 				5623DDDD188CDBA100AA6C14 /* rj.txt in Resources */,
