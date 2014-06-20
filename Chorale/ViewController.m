@@ -53,15 +53,15 @@
     return _audioController;
 }
 
--(void) receiveList:(NSArray *)list fromSource:(NSString *)source {
-    NSLog(@"List: %@",[list description]);
-}
--(void) receiveFloat:(float)received fromSource:(NSString *)source {
-    NSLog(@"ReceivedFloat: %f from source: %@",received,source);
-}
--(void) receivePrint:(NSString *)message {
-    NSLog(@"Print %@",message);
-}
+//-(void) receiveList:(NSArray *)list fromSource:(NSString *)source {
+//    NSLog(@"List: %@",[list description]);
+//}
+//-(void) receiveFloat:(float)received fromSource:(NSString *)source {
+//    NSLog(@"ReceivedFloat: %f from source: %@",received,source);
+//}
+//-(void) receivePrint:(NSString *)message {
+//    NSLog(@"Print %@",message);
+//}
 
 - (void)viewDidLoad
 {
@@ -89,10 +89,6 @@
     [self.audioController setActive:YES];
     [self.audioController print];
     [PdBase setDelegate:self];
-    
-    [PdBase subscribe:@"singvolume"];
-    [PdBase subscribe:@"samplesread"];
-    [PdBase subscribe:@"sampleNameFreq"];
     
     // Setup composition
     //    self.composition = [[TestChoraleComposition alloc] init];
