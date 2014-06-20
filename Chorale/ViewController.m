@@ -53,13 +53,15 @@
     return _audioController;
 }
 
-//-(void) receiveList:(NSArray *)list fromSource:(NSString *)source {
-//    NSLog([list description]);
-//}
-//
-//-(void) receiveFloat:(float)received fromSource:(NSString *)source {
-//    NSLog([NSString stringWithFormat:@"Sing Volume: %f",received]);
-//}
+-(void) receiveList:(NSArray *)list fromSource:(NSString *)source {
+    NSLog(@"List: %@",[list description]);
+}
+-(void) receiveFloat:(float)received fromSource:(NSString *)source {
+    NSLog(@"ReceivedFloat: %f from source: %@",received,source);
+}
+-(void) receivePrint:(NSString *)message {
+    NSLog(@"Print %@",message);
+}
 
 - (void)viewDidLoad
 {
@@ -89,10 +91,12 @@
     [PdBase setDelegate:self];
     
     [PdBase subscribe:@"singvolume"];
+    [PdBase subscribe:@"samplesread"];
+    [PdBase subscribe:@"sampleNameFreq"];
     
     // Setup composition
-//    self.composition = [[TestChoraleComposition alloc] init];
-//    self.composition = [[StudyInBowls1 alloc] init];
+    //    self.composition = [[TestChoraleComposition alloc] init];
+    //    self.composition = [[StudyInBowls1 alloc] init];
     self.composition = [[GenerativeSetupComposition alloc] init];
 
     [self.compositionStepper setMinimumValue:0];
@@ -183,6 +187,7 @@
     int state = (int) sender.value;
     NSArray *newSetup = [self.composition setupForState:state];
     [self applyNewSetup:newSetup];
+    [PdBase sendFloat:(float) arc4random_uniform(6) toReceiver:@"changesound"];
 }
 - (IBAction)sliderMoved:(UISlider *)sender {
     [self setDistortion:[sender value]];
