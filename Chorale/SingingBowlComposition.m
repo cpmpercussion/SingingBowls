@@ -43,13 +43,13 @@
     } else if (state < [self.contents count]) {
         self.index = state;
     } else {
-        self.index = [self.contents count] - 1;
+        self.index = (int) [self.contents count] - 1;
     }
     return [self.contents objectAtIndex:self.index];
 }
 
 - (int) numberOfSetups {
-    return [self.contents count];
+    return (int) [self.contents count];
 }
 
 @end

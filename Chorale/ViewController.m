@@ -53,16 +53,6 @@
     return _audioController;
 }
 
-//-(void) receiveList:(NSArray *)list fromSource:(NSString *)source {
-//    NSLog(@"List: %@",[list description]);
-//}
-//-(void) receiveFloat:(float)received fromSource:(NSString *)source {
-//    NSLog(@"ReceivedFloat: %f from source: %@",received,source);
-//}
-//-(void) receivePrint:(NSString *)message {
-//    NSLog(@"Print %@",message);
-//}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -236,9 +226,7 @@
     [self.ensembleView drawEnsemble:self.metatoneClients];
 }
 
--(void)metatoneClientRemovedwithAddress:(NSString *)address andPort:(int)port andHostname:(NSString *)hostname {
-    
-}
+-(void)metatoneClientRemovedwithAddress:(NSString *)address andPort:(int)port andHostname:(NSString *)hostname {}
 
 -(void)loggingServerFoundWithAddress:(NSString *)address andPort:(int)port andHostname:(NSString *)hostname {
     [self.oscStatusLabel setText:[NSString stringWithFormat:@"connected to %@ 👍", hostname]];
@@ -259,7 +247,7 @@
         [self applyNewSetup:newSetup];
         //[self.compositionStepper setValue:(self.compositionStepper.value + 1)];
     }
-    NSLog(@"EnsembleEvent: %@",event);
+    NSLog(@"EnsembleEvent: %@ \n",event);
 }
 
 -(void)didReceiveGestureMessageFor:(NSString *)device withClass:(NSString *)class {

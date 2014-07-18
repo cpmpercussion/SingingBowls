@@ -28,7 +28,7 @@
 
 - (int) numberOfPitches
 {
-    return [self.pitches count];
+    return (int) [self.pitches count];
 }
 
 - (int) pitchAtIndex:(int)index

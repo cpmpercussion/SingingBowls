@@ -409,7 +409,6 @@
 		567B3A0B1898C88F000DDFD1 /* F53OSCTimeTag.m in Sources */ = {isa = PBXBuildFile; fileRef = 567B39F31898C88F000DDFD1 /* F53OSCTimeTag.m */; };
 		567B3A0C1898C88F000DDFD1 /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 567B39F51898C88F000DDFD1 /* GCDAsyncSocket.m */; };
 		567B3A0D1898C88F000DDFD1 /* GCDAsyncUdpSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 567B39F71898C88F000DDFD1 /* GCDAsyncUdpSocket.m */; };
-		567B3A0E1898C88F000DDFD1 /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = 567B39F81898C88F000DDFD1 /* LICENSE.txt */; };
 		567B3A0F1898C88F000DDFD1 /* MetatoneNetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 567B39FA1898C88F000DDFD1 /* MetatoneNetworkManager.m */; };
 		567B3A101898C88F000DDFD1 /* NSData+F53OSCBlob.m in Sources */ = {isa = PBXBuildFile; fileRef = 567B39FC1898C88F000DDFD1 /* NSData+F53OSCBlob.m */; };
 		567B3A111898C88F000DDFD1 /* NSDate+F53OSCTimeTag.m in Sources */ = {isa = PBXBuildFile; fileRef = 567B39FE1898C88F000DDFD1 /* NSDate+F53OSCTimeTag.m */; };
@@ -879,7 +878,6 @@
 		567B39F51898C88F000DDFD1 /* GCDAsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDAsyncSocket.m; sourceTree = "<group>"; };
 		567B39F61898C88F000DDFD1 /* GCDAsyncUdpSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDAsyncUdpSocket.h; sourceTree = "<group>"; };
 		567B39F71898C88F000DDFD1 /* GCDAsyncUdpSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDAsyncUdpSocket.m; sourceTree = "<group>"; };
-		567B39F81898C88F000DDFD1 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		567B39F91898C88F000DDFD1 /* MetatoneNetworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MetatoneNetworkManager.h; sourceTree = "<group>"; };
 		567B39FA1898C88F000DDFD1 /* MetatoneNetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MetatoneNetworkManager.m; sourceTree = "<group>"; };
 		567B39FB1898C88F000DDFD1 /* NSData+F53OSCBlob.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+F53OSCBlob.h"; sourceTree = "<group>"; };
@@ -1438,7 +1436,6 @@
 				567B39F51898C88F000DDFD1 /* GCDAsyncSocket.m */,
 				567B39F61898C88F000DDFD1 /* GCDAsyncUdpSocket.h */,
 				567B39F71898C88F000DDFD1 /* GCDAsyncUdpSocket.m */,
-				567B39F81898C88F000DDFD1 /* LICENSE.txt */,
 				567B39F91898C88F000DDFD1 /* MetatoneNetworkManager.h */,
 				567B39FA1898C88F000DDFD1 /* MetatoneNetworkManager.m */,
 				567B39FB1898C88F000DDFD1 /* NSData+F53OSCBlob.h */,
@@ -1932,7 +1929,6 @@
 				5623DD6A188CDBA100AA6C14 /* e_pitchshift-help.pd in Resources */,
 				5649D6E81953FE5C00B4B93C /* marimba.wav in Resources */,
 				5623DE01188CDBA100AA6C14 /* s_noish-help.pd in Resources */,
-				567B3A0E1898C88F000DDFD1 /* LICENSE.txt in Resources */,
 				5623DDE3188CDBA100AA6C14 /* s_blsquare-help.pd in Resources */,
 				5623DE47188CDBA100AA6C14 /* u_lowpass-help.pd in Resources */,
 				5623DE36188CDBA100AA6C14 /* u_listfilter.pd in Resources */,
