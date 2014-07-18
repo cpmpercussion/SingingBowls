@@ -150,7 +150,7 @@
         self.loggingPort = firstPort;
         
         [self.delegate loggingServerFoundWithAddress:self.loggingIPAddress
-                                             andPort:self.loggingPort
+                                             andPort:(int)self.loggingPort
                                          andHostname:self.loggingHostname];
         [self sendMessageOnline];
         NSLog(@"NETWORK MANAGER: Resolved and Connected to an OSC Logger Service.");
@@ -176,7 +176,6 @@
     NSLog(@"NETWORK MANAGER: NetServiceBrowser stopped searching.");
     [self.delegate stoppedSearchingForLoggingServer];
 }
-
 
 # pragma mark OSC Sending Methods
 -(void)sendMessageWithAccelerationX:(double)x Y:(double)y Z:(double)z
@@ -280,8 +279,6 @@
     }
 
 }
-
-
 
 #pragma mark IP Address Methods
 // Get IP Address

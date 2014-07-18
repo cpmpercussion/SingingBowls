@@ -242,6 +242,10 @@
 
 -(void)loggingServerFoundWithAddress:(NSString *)address andPort:(int)port andHostname:(NSString *)hostname {
     [self.oscStatusLabel setText:[NSString stringWithFormat:@"Connected: %@",hostname]];
+    // cancel manual mode.
+    [self.distortSlider setHidden:YES];
+    [self.compositionStepper setHidden:YES];
+    [self.oscStatusLabel setHidden:NO];
 }
 
 -(void)didReceiveMetatoneMessageFrom:(NSString *)device withName:(NSString *)name andState:(NSString *)state {
