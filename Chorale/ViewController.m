@@ -218,11 +218,11 @@
 
 #pragma mark - Metatone Network Methods
 -(void)searchingForLoggingServer {
-    [self.oscStatusLabel setText:@"Searching for Classifier."];
+    [self.oscStatusLabel setText:@"searching for classifier 😒"];
 }
 
 -(void)stoppedSearchingForLoggingServer {
-    [self.oscStatusLabel setText:@"No Classifier."];
+    [self.oscStatusLabel setText:@"classifier not found! 😰"];
 }
 
 -(void)metatoneClientFoundWithAddress:(NSString *)address andPort:(int)port andHostname:(NSString *)hostname {
@@ -241,7 +241,7 @@
 }
 
 -(void)loggingServerFoundWithAddress:(NSString *)address andPort:(int)port andHostname:(NSString *)hostname {
-    [self.oscStatusLabel setText:[NSString stringWithFormat:@"Connected: %@",hostname]];
+    [self.oscStatusLabel setText:[NSString stringWithFormat:@"connected to %@ 👍", hostname]];
     // cancel manual mode.
     [self.distortSlider setHidden:YES];
     [self.compositionStepper setHidden:YES];
