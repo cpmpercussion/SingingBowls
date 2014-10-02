@@ -58,15 +58,18 @@
     [super viewDidLoad];
     
     // Setup UI
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"manual_control_mode"]) {
-        [self.distortSlider setHidden:NO];
-        [self.compositionStepper setHidden:NO];
-        [self.oscStatusLabel setHidden:YES];
-    } else {
-        [self.distortSlider setHidden:YES];
-        [self.compositionStepper setHidden:YES];
-        [self.oscStatusLabel setHidden:NO];
-    }
+//    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"manual_control_mode"]) {
+//        [self.distortSlider setHidden:NO];
+//        [self.compositionStepper setHidden:NO];
+//        [self.oscStatusLabel setHidden:YES];
+//    } else {
+//        [self.distortSlider setHidden:YES];
+//        [self.compositionStepper setHidden:YES];
+//        [self.oscStatusLabel setHidden:NO];
+//    }
+    [self.distortSlider setHidden:YES];
+    [self.compositionStepper setHidden:NO];
+    [self.oscStatusLabel setHidden:NO];
     
     // Setup Pd
     if([self.audioController configurePlaybackWithSampleRate:44100 numberChannels:2 inputEnabled:NO mixingEnabled:YES] != PdAudioOK) {
@@ -225,7 +228,8 @@
 
 #pragma mark - Metatone Network Methods
 -(void)searchingForLoggingServer {
-    [self.oscStatusLabel setText:@"searching for classifier 😒"];
+//    [self.oscStatusLabel setText:@"searching for classifier 😒"];
+    [self.oscStatusLabel setText:@""];
 }
 
 -(void)stoppedSearchingForLoggingServer {
