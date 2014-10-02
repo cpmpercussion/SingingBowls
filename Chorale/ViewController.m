@@ -7,11 +7,10 @@
 //
 
 #define TEST_PITCHES @[@36,@39,@43,@47,@51,@58,@62,@76,@80]
-
 #define METATONE_NEWSECTION_MESSAGE @"NEWSECTION"
 #define METATONE_NEWIDEA_MESSAGE @"new_idea"
-
 #define IPAD_SCREEN_DIAGONAL_LENGTH 1280
+#define ENSEMBLE_STATUS_MODE NO
 
 #import "ViewController.h"
 #import "ScaleMaker.h"
@@ -42,6 +41,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *ensembleStatusLabel;
 // Composition
 @property (strong,nonatomic) SingingBowlComposition *composition;
+@property (strong, nonatomic) NSDate* timeOfLastNewIdea;
 @end
 
 @implementation ViewController
@@ -89,15 +89,32 @@
     [self.compositionStepper setMaximumValue:[self.composition numberOfSetups]];
     [self.compositionStepper setWraps:YES];
     
+    
     // Setup singing bowls
     self.bowlSetup = [[SingingBowlSetup alloc] initWithPitches:[NSMutableArray arrayWithArray:[self.composition firstSetup]]];
-
     self.viewRadius = [self calculateMaximumRadius];
     [self.bowlView drawSetup:self.bowlSetup];
     
     // Setup Network
     self.metatoneClients = [[NSMutableDictionary alloc] init];
     self.networkManager = [[MetatoneNetworkManager alloc] initWithDelegate:self shouldOscLog:YES];
+    self.timeOfLastNewIdea = [NSDate date];
+    
+    // Ensemble Heads Up Display
+    if (ENSEMBLE_STATUS_MODE) {
+        NSLog(@"Displaying Ensemble Status UI");
+        [self.ensembleStatusLabel setHidden:NO];
+        [self.playerStatusLabel setHidden:NO];
+        [self.gestureStatusLabel setHidden:NO];
+        [self.ensembleView setHidden:NO];
+    } else {
+        NSLog(@"Hiding Ensemble Status UI");
+        [self.ensembleStatusLabel setHidden:YES];
+        [self.playerStatusLabel setHidden:YES];
+        [self.gestureStatusLabel setHidden:YES];
+        [self.ensembleView setHidden:YES];
+    }
+    
 }
 
 - (void) applyNewSetup: (NSArray *) setup {
@@ -241,13 +258,15 @@
 }
 
 -(void)didReceiveEnsembleEvent:(NSString *)event forDevice:(NSString *)device withMeasure:(NSNumber *)measure {
-    NSLog(@"New Idea");
-    if ([event isEqualToString:METATONE_NEWIDEA_MESSAGE]) {
+    NSLog(@"EnsembleEvent: %@ \n",event);
+    if ([event isEqualToString:METATONE_NEWIDEA_MESSAGE] && ([self.timeOfLastNewIdea timeIntervalSinceNow] < -10.0)) {
         NSArray *newSetup = [self.composition nextSetup];
         [self applyNewSetup:newSetup];
         //[self.compositionStepper setValue:(self.compositionStepper.value + 1)];
+        self.timeOfLastNewIdea = [NSDate date];
+    } else {
+        NSLog(@"Ensemble Event Received: Too soon after last event!");
     }
-    NSLog(@"EnsembleEvent: %@ \n",event);
 }
 
 -(void)didReceiveGestureMessageFor:(NSString *)device withClass:(NSString *)class {

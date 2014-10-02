@@ -17,7 +17,7 @@
 
 - (GenerativeSetupComposition *) initWithRootNotes:(NSArray *)roots andScales:(NSArray *)scales {
     self = [super init];
-    self.looping = NO;
+    self.looping = YES; // edited for 19072014 experiments.
     self.rootNotes = roots;
     self.scales = scales;
     self.contents = [self generateSetups];
@@ -27,7 +27,7 @@
 
 - (GenerativeSetupComposition *) init {
     self = [super init];
-    self.looping = NO;
+    self.looping = YES; // edited for 19072014 experiments.
     self.rootNotes = @[@34,@36,@37];
     self.scales = @[@"LYDIAN",@"MIXOFLATSIX",@"OCTATONIC"];
     self.contents = [self generateSetups];
