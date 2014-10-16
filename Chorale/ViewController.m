@@ -72,6 +72,9 @@
     [self.audioController print];
     [PdBase setDelegate:self];
     
+    // Setup Midi
+    self.midiManager = [[MetatoneMidiManager alloc] init];
+    
     // Setup composition
     //    self.composition = [[TestChoraleComposition alloc] init];
     //    self.composition = [[StudyInBowls1 alloc] init];

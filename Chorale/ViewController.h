@@ -10,8 +10,10 @@
 #import "PdAudioController.h"
 #import "PdBase.h"
 #import "MetatoneNetworkManager.h"
+#import "MetatoneMidiManager.h"
 
 @interface ViewController : UIViewController <PdReceiverDelegate,MetatoneNetworkManagerDelegate>
 
+@property (strong, nonatomic) MetatoneMidiManager* midiManager;
 
 @end
