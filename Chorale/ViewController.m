@@ -123,8 +123,8 @@
     for (UITouch * touch in [touches objectEnumerator]) {
         CGPoint point = [touch locationInView:self.view];
         int velocity = floorf(15 + (110*((touch.majorRadius)/80)));
-        NSLog(@"Touch Radius: %f",touch.majorRadius);
-        NSLog(@"Velocity: %d",velocity);
+//        NSLog(@"Touch Radius: %f",touch.majorRadius);
+//        NSLog(@"Velocity: %d",velocity);
         if (velocity > 127) velocity = 127;
         if (velocity < 0) velocity = 0;
         [PdBase sendNoteOn:1 pitch:[self noteFromPosition:point] velocity:velocity];
