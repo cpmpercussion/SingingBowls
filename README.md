@@ -1,5 +1,8 @@
 # Singing Bowls
 
+[![DOI](https://zenodo.org/badge/20166/cpmpercussion/SingingBowls.svg)](https://zenodo.org/badge/latestdoi/20166/cpmpercussion/SingingBowls)
+
+
 ![Singing Bowls app screenshot](https://raw.githubusercontent.com/cpmpercussion/SingingBowls/master/app-4-SingingBowls.jpg)
 
 Singing Bowls is an annular interface for performing music on iPads.
