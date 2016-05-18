@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "5623DB5F188CDB3800AA6C14"
-               BuildableName = "SingingBowls.app"
-               BlueprintName = "SingingBowls"
-               ReferencedContainer = "container:SingingBowls.xcodeproj">
+               BlueprintIdentifier = "E86399BC89FE55F97D731FF0662730F7"
+               BuildableName = "libPods-SingingBowls.a"
+               BlueprintName = "Pods-SingingBowls"
+               ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -28,26 +28,7 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "5623DB80188CDB3800AA6C14"
-               BuildableName = "SingingBowlsTests.xctest"
-               BlueprintName = "SingingBowlsTests"
-               ReferencedContainer = "container:SingingBowls.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "5623DB5F188CDB3800AA6C14"
-            BuildableName = "SingingBowls.app"
-            BlueprintName = "SingingBowls"
-            ReferencedContainer = "container:SingingBowls.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
@@ -61,16 +42,15 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "5623DB5F188CDB3800AA6C14"
-            BuildableName = "SingingBowls.app"
-            BlueprintName = "SingingBowls"
-            ReferencedContainer = "container:SingingBowls.xcodeproj">
+            BlueprintIdentifier = "E86399BC89FE55F97D731FF0662730F7"
+            BuildableName = "libPods-SingingBowls.a"
+            BlueprintName = "Pods-SingingBowls"
+            ReferencedContainer = "container:Pods.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -80,23 +60,12 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "5623DB5F188CDB3800AA6C14"
-            BuildableName = "SingingBowls.app"
-            BlueprintName = "SingingBowls"
-            ReferencedContainer = "container:SingingBowls.xcodeproj">
-         </BuildableReference>
-      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
    </AnalyzeAction>
    <ArchiveAction
       buildConfiguration = "Release"
-      customArchiveName = "SingingBowls"
       revealArchiveInOrganizer = "YES">
    </ArchiveAction>
 </Scheme>
